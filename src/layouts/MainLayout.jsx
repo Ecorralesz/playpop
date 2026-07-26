@@ -13,7 +13,7 @@ function MainLayout() {
         Skip to main content
       </a>
 
-      <header>
+      <header className="main-layout__header">
         <PlayPopNavbar />
       </header>
 
@@ -22,6 +22,10 @@ function MainLayout() {
           <Outlet />
         </div>
       </main>
+
+      <footer>
+        <div className="main-layout__wrapper px-3 py-3">PlayPop</div>
+      </footer>
     </div>
   );
 }

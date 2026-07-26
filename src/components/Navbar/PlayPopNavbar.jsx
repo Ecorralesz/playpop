@@ -27,8 +27,8 @@ function PlayPopNavbar() {
             className="playpop-navbar__logo"
             src={playPopLogo}
             alt="PlayPop"
-            width="72"
-            height="72"
+            width="60"
+            height="60"
           />
         </Navbar.Brand>
 
