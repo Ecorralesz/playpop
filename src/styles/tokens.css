@@ -53,5 +53,5 @@
   /* Motion and layout */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
-  --content-max-width: 75rem;
+  --layout-max-width: 75rem;
 }

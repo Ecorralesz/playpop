@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router';
 
+import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import InflatablesPage from './pages/InflatablesPage';
 import PackagesPage from './pages/PackagesPage';
@@ -12,14 +13,16 @@ import NotFoundPage from './pages/NotFoundPage';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/inflables" element={<InflatablesPage />} />
-      <Route path="/paquetes" element={<PackagesPage />} />
-      <Route path="/servicios" element={<ServicesPage />} />
-      <Route path="/galeria" element={<GalleryPage />} />
-      <Route path="/contacto" element={<ContactPage />} />
-      <Route path="/carrito" element={<CartPage />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/inflables" element={<InflatablesPage />} />
+        <Route path="/paquetes" element={<PackagesPage />} />
+        <Route path="/servicios" element={<ServicesPage />} />
+        <Route path="/galeria" element={<GalleryPage />} />
+        <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/carrito" element={<CartPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
     </Routes>
   );
 }

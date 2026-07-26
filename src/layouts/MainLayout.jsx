@@ -1,0 +1,32 @@
+import { Outlet } from 'react-router';
+
+import './MainLayout.css';
+
+function MainLayout() {
+  return (
+    <div className="d-flex min-vh-100 flex-column">
+      <a
+        className="visually-hidden-focusable position-absolute m-3 btn btn-primary"
+        href="#main-content"
+      >
+        Skip to main content
+      </a>
+
+      <header>
+        <div className="main-layout__wrapper px-3 py-3">PlayPop</div>
+      </header>
+
+      <main id="main-content" className="flex-grow-1">
+        <div className="main-layout__wrapper">
+          <Outlet />
+        </div>
+      </main>
+
+      <footer>
+        <div className="main-layout__wrapper px-3 py-3">PlayPop</div>
+      </footer>
+    </div>
+  );
+}
+
+export default MainLayout;
