@@ -1,3 +1,9 @@
+.main-layout__header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
 .main-layout__wrapper {
   width: 100%;
   max-width: var(--layout-max-width);

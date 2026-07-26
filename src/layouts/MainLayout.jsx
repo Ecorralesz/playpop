@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 
+import PlayPopNavbar from '../components/Navbar/PlayPopNavbar';
 import './MainLayout.css';
 
 function MainLayout() {
@@ -12,8 +13,8 @@ function MainLayout() {
         Skip to main content
       </a>
 
-      <header>
-        <div className="main-layout__wrapper px-3 py-3">PlayPop</div>
+      <header className="main-layout__header">
+        <PlayPopNavbar />
       </header>
 
       <main id="main-content" className="flex-grow-1">
