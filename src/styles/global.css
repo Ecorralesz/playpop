@@ -1,9 +1,12 @@
 :root {
-  font-family:
-    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-
-  color: #212529;
-  background: #ffffff;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
 *,
@@ -20,16 +23,32 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+  color: var(--color-primary);
+  text-decoration-color: transparent;
+  transition:
+    color var(--transition-fast),
+    text-decoration-color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration-color: currentcolor;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 #root {
