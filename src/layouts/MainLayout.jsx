@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 
+import PlayPopNavbar from '../components/Navbar/PlayPopNavbar';
 import './MainLayout.css';
 
 function MainLayout() {
@@ -13,7 +14,7 @@ function MainLayout() {
       </a>
 
       <header>
-        <div className="main-layout__wrapper px-3 py-3">PlayPop</div>
+        <PlayPopNavbar />
       </header>
 
       <main id="main-content" className="flex-grow-1">
@@ -21,10 +22,6 @@ function MainLayout() {
           <Outlet />
         </div>
       </main>
-
-      <footer>
-        <div className="main-layout__wrapper px-3 py-3">PlayPop</div>
-      </footer>
     </div>
   );
 }
