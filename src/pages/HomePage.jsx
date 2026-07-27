@@ -1,9 +1,7 @@
+import Hero from '../components/home/Hero/Hero';
+
 function HomePage() {
-  return (
-    <div className="container py-5">
-      <h1>Home</h1>
-    </div>
-  );
+  return <Hero />;
 }
 
 export default HomePage;
