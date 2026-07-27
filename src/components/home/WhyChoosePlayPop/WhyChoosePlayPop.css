@@ -1,0 +1,14 @@
+.why-choose-playpop {
+  padding-block: var(--space-7);
+  background-color: var(--color-background);
+}
+
+.why-choose-playpop__container {
+  max-width: var(--layout-max-width);
+}
+
+@media (min-width: 992px) {
+  .why-choose-playpop {
+    padding-block: var(--space-8);
+  }
+}
