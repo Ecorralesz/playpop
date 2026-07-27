@@ -1,5 +1,5 @@
 .featured-inflatables {
-  padding-block: var(--space-7);
+  padding-block: calc(var(--space-5) + var(--space-1)) var(--space-6);
   background-color: var(--color-surface);
 }
 
@@ -39,6 +39,6 @@
 
 @media (min-width: 992px) {
   .featured-inflatables {
-    padding-block: var(--space-8);
+    padding-block: calc(var(--space-6) + var(--space-2)) var(--space-7);
   }
 }
