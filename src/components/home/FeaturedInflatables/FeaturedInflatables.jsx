@@ -1,6 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
 
 import ProductCard from '../../common/ProductCard/ProductCard';
+import SectionHeader from '../../common/SectionHeader/SectionHeader';
 import featuredInflatables from '../../../data/featuredInflatables';
 import './FeaturedInflatables.css';
 
@@ -8,15 +9,12 @@ function FeaturedInflatables() {
   return (
     <section className="featured-inflatables" aria-labelledby="featured-inflatables-heading">
       <Container className="featured-inflatables__container">
-        <header className="featured-inflatables__header">
-          <p className="featured-inflatables__eyebrow">Diversión para todos</p>
-          <h2 className="featured-inflatables__heading" id="featured-inflatables-heading">
-            Nuestros inflables más populares
-          </h2>
-          <p className="featured-inflatables__description">
-            Descubre algunas opciones ideales para cumpleaños, fiestas y eventos especiales.
-          </p>
-        </header>
+        <SectionHeader
+          eyebrow="Diversión para todos"
+          title="Nuestros inflables más populares"
+          description="Descubre algunas opciones ideales para cumpleaños, fiestas y eventos especiales."
+          headingId="featured-inflatables-heading"
+        />
 
         <Row className="g-4">
           {featuredInflatables.map((product) => (
