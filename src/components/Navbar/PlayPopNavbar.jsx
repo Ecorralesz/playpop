@@ -2,6 +2,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router';
 
 import playPopLogo from '../../assets/images/playpop-logo.png';
+import { WHATSAPP_URL } from '../../config/contact';
 import './PlayPopNavbar.css';
 
 const navigationItems = [
@@ -51,7 +52,7 @@ function PlayPopNavbar() {
 
             <Nav.Link
               className="playpop-navbar__whatsapp btn btn-success"
-              href="https://wa.me/50663892727"
+              href={WHATSAPP_URL}
               rel="noreferrer"
               target="_blank"
             >
