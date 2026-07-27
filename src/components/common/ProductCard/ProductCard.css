@@ -26,6 +26,60 @@
   transition: transform var(--transition-base);
 }
 
+.product-card__placeholder {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  place-items: center;
+  color: var(--color-primary);
+  background: linear-gradient(145deg, var(--color-primary-light), var(--color-surface));
+}
+
+.product-card__placeholder::before,
+.product-card__placeholder::after {
+  position: absolute;
+  width: 7rem;
+  height: 7rem;
+  content: '';
+  border-radius: var(--radius-pill);
+  opacity: 0.38;
+}
+
+.product-card__placeholder::before {
+  top: -2rem;
+  right: -1rem;
+  background-color: var(--color-accent);
+}
+
+.product-card__placeholder::after {
+  bottom: -3rem;
+  left: -1.5rem;
+  background-color: var(--color-secondary);
+}
+
+.product-card__placeholder-icon {
+  font-size: 3.5rem;
+}
+
+.product-card__placeholder-star,
+.product-card__placeholder-balloon {
+  position: absolute;
+  font-size: var(--font-size-lg);
+}
+
+.product-card__placeholder-star {
+  top: 28%;
+  left: 25%;
+}
+
+.product-card__placeholder-balloon {
+  right: 24%;
+  bottom: 26%;
+  color: var(--color-secondary);
+}
+
 .product-card__badge {
   position: absolute;
   right: var(--space-3);

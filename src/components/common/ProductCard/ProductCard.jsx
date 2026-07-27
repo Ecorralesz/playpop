@@ -8,7 +8,15 @@ function ProductCard({ product }) {
   return (
     <article className="product-card">
       <div className="product-card__media">
-        <img className="product-card__image" src={image} alt={imageAlt} loading="lazy" />
+        {image ? (
+          <img className="product-card__image" src={image} alt={imageAlt} loading="lazy" />
+        ) : (
+          <div className="product-card__placeholder" aria-hidden="true">
+            <i className="bi bi-stars product-card__placeholder-star" />
+            <i className="bi bi-balloon product-card__placeholder-balloon" />
+            <i className="bi bi-image product-card__placeholder-icon" />
+          </div>
+        )}
         <span className="product-card__badge">{badge}</span>
       </div>
       <div className="product-card__body">

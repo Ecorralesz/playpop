@@ -1,8 +1,14 @@
+import CatalogQuotationCTA from '../components/catalog/CatalogQuotationCTA/CatalogQuotationCTA';
+import InflatablesGrid from '../components/catalog/InflatablesGrid/InflatablesGrid';
+import InflatablesPageHero from '../components/catalog/InflatablesPageHero/InflatablesPageHero';
+
 function InflatablesPage() {
   return (
-    <div className="container py-5">
-      <h1>Inflatables</h1>
-    </div>
+    <>
+      <InflatablesPageHero />
+      <InflatablesGrid />
+      <CatalogQuotationCTA />
+    </>
   );
 }
 
