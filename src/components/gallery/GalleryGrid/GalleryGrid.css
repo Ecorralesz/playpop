@@ -1,0 +1,14 @@
+.gallery-grid {
+  padding-block: var(--space-7);
+  background-color: var(--color-surface);
+}
+
+.gallery-grid__container {
+  max-width: var(--layout-max-width);
+}
+
+@media (min-width: 992px) {
+  .gallery-grid {
+    padding-block: var(--space-8);
+  }
+}
