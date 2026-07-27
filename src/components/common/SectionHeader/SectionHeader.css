@@ -1,0 +1,37 @@
+.section-header {
+  max-width: 44rem;
+  margin-bottom: var(--space-7);
+}
+
+.section-header--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-header--start {
+  text-align: start;
+}
+
+.section-header__eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--color-primary-dark);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-header__title {
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.03em;
+}
+
+.section-header__description {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
