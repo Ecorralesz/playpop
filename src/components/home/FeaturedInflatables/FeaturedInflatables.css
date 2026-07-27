@@ -1,0 +1,44 @@
+.featured-inflatables {
+  padding-block: var(--space-7);
+  background-color: var(--color-surface);
+}
+
+.featured-inflatables__container {
+  max-width: var(--layout-max-width);
+}
+
+.featured-inflatables__header {
+  max-width: 44rem;
+  margin: 0 auto var(--space-7);
+  text-align: center;
+}
+
+.featured-inflatables__eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--color-primary-dark);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.featured-inflatables__heading {
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.03em;
+}
+
+.featured-inflatables__description {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
+
+@media (min-width: 992px) {
+  .featured-inflatables {
+    padding-block: var(--space-8);
+  }
+}
