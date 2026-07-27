@@ -1,0 +1,55 @@
+.contact-method-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-6);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-method-card__icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-5);
+  place-items: center;
+  color: var(--color-primary-dark);
+  font-size: 1.4rem;
+  background-color: var(--color-primary-light);
+  border-radius: var(--radius-md);
+}
+
+.contact-method-card__title {
+  margin-bottom: var(--space-3);
+  font-size: 1.35rem;
+  font-weight: var(--font-weight-bold);
+}
+.contact-method-card__description {
+  flex-grow: 1;
+  margin-bottom: var(--space-5);
+  color: var(--color-text-muted);
+}
+.contact-method-card__action,
+.contact-method-card__status {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  align-self: flex-start;
+  font-weight: var(--font-weight-semibold);
+}
+.contact-method-card__action {
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-primary-dark);
+  border-radius: var(--radius-sm);
+}
+.contact-method-card__status {
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-method-card__action {
+    transition: none;
+  }
+}
