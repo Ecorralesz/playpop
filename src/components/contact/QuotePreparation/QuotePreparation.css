@@ -1,0 +1,35 @@
+.quote-preparation {
+  padding-block: var(--space-8);
+}
+.quote-preparation__container {
+  max-width: var(--layout-max-width);
+}
+.quote-preparation__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.quote-preparation__list li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-5);
+  font-weight: var(--font-weight-semibold);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.quote-preparation__list i {
+  color: var(--color-primary);
+  font-size: 1.35rem;
+}
+@media (min-width: 768px) {
+  .quote-preparation__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

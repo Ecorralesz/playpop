@@ -1,0 +1,10 @@
+.contact-methods {
+  padding-block: var(--space-8);
+  background-color: var(--color-surface);
+}
+.contact-methods__container {
+  max-width: var(--layout-max-width);
+}
+.contact-methods .col-12 {
+  display: flex;
+}
