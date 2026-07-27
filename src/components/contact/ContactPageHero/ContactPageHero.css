@@ -1,0 +1,84 @@
+.contact-page-hero {
+  overflow: hidden;
+  padding-block: var(--space-7);
+  background: linear-gradient(150deg, var(--color-background), var(--color-primary-light));
+}
+.contact-page-hero__container {
+  max-width: var(--layout-max-width);
+}
+.contact-page-hero__eyebrow {
+  display: inline-flex;
+  margin-bottom: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-primary-dark);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.04em;
+  background: var(--color-background);
+  border-radius: var(--radius-pill);
+}
+.contact-page-hero__heading {
+  max-width: 48rem;
+  margin-bottom: var(--space-5);
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.contact-page-hero__description {
+  max-width: 46rem;
+  margin-bottom: var(--space-6);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
+.contact-page-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.contact-page-hero__actions .btn {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-5);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-pill);
+}
+.contact-page-hero__visual {
+  position: relative;
+  display: grid;
+  min-height: 13rem;
+  place-items: center;
+  color: var(--color-primary);
+  font-size: 4.5rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.contact-page-hero__visual .bi-stars {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  color: var(--color-accent);
+  font-size: 2rem;
+}
+@media (min-width: 576px) {
+  .contact-page-hero__actions {
+    flex-direction: row;
+  }
+}
+@media (min-width: 992px) {
+  .contact-page-hero {
+    padding-block: var(--space-8);
+  }
+  .contact-page-hero__visual {
+    min-height: 18rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-page-hero__actions .btn {
+    transition: none;
+  }
+}

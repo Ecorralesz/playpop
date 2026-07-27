@@ -1,8 +1,18 @@
+import ContactMethods from '../components/contact/ContactMethods/ContactMethods';
+import ContactPageHero from '../components/contact/ContactPageHero/ContactPageHero';
+import ContactReservationNotice from '../components/contact/ContactReservationNotice/ContactReservationNotice';
+import CoverageArea from '../components/contact/CoverageArea/CoverageArea';
+import QuotePreparation from '../components/contact/QuotePreparation/QuotePreparation';
+
 function ContactPage() {
   return (
-    <div className="container py-5">
-      <h1>Contact</h1>
-    </div>
+    <>
+      <ContactPageHero />
+      <ContactMethods />
+      <QuotePreparation />
+      <CoverageArea />
+      <ContactReservationNotice />
+    </>
   );
 }
 
