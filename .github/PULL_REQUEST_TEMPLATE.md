@@ -2,38 +2,106 @@
 
 Describe what this pull request changes and why it is needed.
 
+---
+
+## Type of Change
+
+- [ ] Feature
+- [ ] Bug Fix
+- [ ] UI Improvement
+- [ ] Refactor
+- [ ] Documentation
+- [ ] Performance
+- [ ] Chore
+
+---
+
 ## Scope
 
-List the main files, components, or features changed.
+List the major files, components, or pages changed.
 
-## Testing
+Example:
 
-Describe the tests performed.
+- Hero component
+- Home page
+- Shared Button component
+
+---
 
 ## Screenshots
 
-Add screenshots for any visible UI changes.
+If this PR changes the UI, attach screenshots.
 
-## Checklist
+Desktop
 
-- [ ] Requirements implemented
-- [ ] PR is focused on one feature or responsibility
-- [ ] Matches `UI_DECISIONS.md`
-- [ ] Matches `CODING_GUIDELINES.md`
+-
+
+Tablet
+
+-
+
+Mobile
+
+-
+
+---
+
+## Testing
+
+Describe what was tested.
+
+Example:
+
+- Homepage
+- Mobile navigation
+- Responsive layout
+- Keyboard navigation
+
+---
+
+# Checklist
+
+## Architecture
+
+- [ ] Matches PROJECT_CONTEXT.md
+- [ ] Matches PROJECT_RULES.md
+- [ ] Matches UI_DECISIONS.md
+- [ ] Matches CODING_GUIDELINES.md
+- [ ] Matches ARCHITECTURE_DECISIONS.md
+
+## Code Quality
+
+- [ ] Single responsibility
+- [ ] No unnecessary complexity
+- [ ] No duplicated logic
+- [ ] Components remain reusable
 - [ ] Uses existing design tokens
-- [ ] Responsive on mobile, tablet, and desktop
-- [ ] Keyboard navigation checked
-- [ ] Visible focus states checked
-- [ ] Semantic HTML and accessibility reviewed
-- [ ] No unnecessary dependencies added
-- [ ] No unrelated files changed
-- [ ] `npm run format` passed
-- [ ] `npm run lint` passed
-- [ ] `npm run build` passed
-- [ ] Browser console has no errors
-- [ ] Screenshots attached for UI changes
-- [ ] Ready for architecture and UI review
+- [ ] No unnecessary dependencies
 
-## Notes for Reviewers
+## UI
 
-Mention any limitations, placeholders, missing assets, configuration needs, or follow-up work.
+- [ ] Responsive
+- [ ] Accessible
+- [ ] Keyboard navigation verified
+- [ ] Focus states verified
+- [ ] Proper spacing
+- [ ] Consistent typography
+- [ ] Consistent animations
+
+## Validation
+
+- [ ] npm run format
+- [ ] npm run lint
+- [ ] npm run build
+- [ ] Browser console checked
+
+## Review
+
+- [ ] Ready for Architecture Review
+- [ ] Ready for UI Review
+
+---
+
+## Follow-up Work
+
+Describe any known limitations, TODOs, missing assets, or future improvements.
