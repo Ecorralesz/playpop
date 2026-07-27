@@ -1,0 +1,121 @@
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.gallery-card__visual {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--color-primary-light);
+}
+
+.gallery-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-card__placeholder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-5);
+  color: var(--color-primary-dark);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+
+.gallery-card__placeholder::before,
+.gallery-card__placeholder::after {
+  position: absolute;
+  content: '';
+  border-radius: 50%;
+}
+
+.gallery-card__placeholder::before {
+  top: -2rem;
+  right: -1rem;
+  width: 7rem;
+  height: 7rem;
+  background-color: var(--color-accent);
+  opacity: 0.55;
+}
+
+.gallery-card__placeholder::after {
+  bottom: -2.5rem;
+  left: -1.5rem;
+  width: 8rem;
+  height: 8rem;
+  background-color: var(--color-secondary);
+  opacity: 0.2;
+}
+
+.gallery-card__placeholder .bi {
+  font-size: 2rem;
+}
+
+.gallery-card__placeholder .bi,
+.gallery-card__placeholder span {
+  z-index: 1;
+}
+
+.gallery-card__badge {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 2;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-card__body {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: var(--space-5);
+}
+
+.gallery-card__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+}
+
+@media (hover: hover) {
+  .gallery-card:hover {
+    transform: translateY(calc(var(--space-1) * -1));
+    box-shadow: var(--shadow-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-card {
+    transition: none;
+  }
+}
