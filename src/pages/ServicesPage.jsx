@@ -1,8 +1,16 @@
+import ServicesGrid from '../components/services/ServicesGrid/ServicesGrid';
+import ServicesPageHero from '../components/services/ServicesPageHero/ServicesPageHero';
+import ServicesProcess from '../components/services/ServicesProcess/ServicesProcess';
+import ServicesQuotationCTA from '../components/services/ServicesQuotationCTA/ServicesQuotationCTA';
+
 function ServicesPage() {
   return (
-    <div className="container py-5">
-      <h1>Services</h1>
-    </div>
+    <>
+      <ServicesPageHero />
+      <ServicesGrid />
+      <ServicesProcess />
+      <ServicesQuotationCTA />
+    </>
   );
 }
 
