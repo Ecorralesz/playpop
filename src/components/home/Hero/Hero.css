@@ -119,6 +119,7 @@
   width: var(--space-7);
   height: var(--space-7);
   background-color: var(--color-accent);
+  animation: hero-accent-float 5.5s ease-in-out 0.4s infinite alternate;
 }
 
 .hero__accent--bottom {
@@ -127,6 +128,17 @@
   width: var(--space-8);
   height: var(--space-8);
   background-color: var(--color-secondary);
+  animation: hero-accent-float 6.5s ease-in-out -1.75s infinite alternate;
+}
+
+@keyframes hero-accent-float {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-1 * var(--space-2)));
+  }
 }
 
 @media (min-width: 576px) {
@@ -155,5 +167,9 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__actions .btn {
     transition: none;
+  }
+
+  .hero__accent {
+    animation: none;
   }
 }
