@@ -1,6 +1,11 @@
 .contact-methods {
-  padding-block: var(--space-8);
+  padding-block: var(--space-7);
   background-color: var(--color-surface);
+}
+@media (min-width: 992px) {
+  .contact-methods {
+    padding-block: var(--space-8);
+  }
 }
 .contact-methods__container {
   max-width: var(--layout-max-width);

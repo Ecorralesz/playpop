@@ -1,5 +1,5 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import playPopLogo from '../../../assets/images/playpop-logo.png';
 import { WHATSAPP_URL } from '../../../config/contact';

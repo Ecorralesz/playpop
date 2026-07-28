@@ -17,9 +17,14 @@
 }
 
 .playpop-navbar__logo {
-  width: 8.00rem;
-  height: 8.00rem;
+  width: 4rem;
+  height: 4rem;
   object-fit: contain;
+}
+
+.playpop-navbar .navbar-toggler {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
 }
 
 .playpop-navbar__links {
@@ -74,5 +79,20 @@
     align-self: auto;
     margin-top: 0;
     margin-left: var(--space-2);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .playpop-navbar__links {
+    gap: 0;
+  }
+
+  .playpop-navbar .playpop-navbar__link {
+    padding-inline: var(--space-2);
+  }
+
+  .playpop-navbar .playpop-navbar__whatsapp {
+    margin-left: var(--space-1);
+    padding-inline: var(--space-3);
   }
 }
