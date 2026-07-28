@@ -1,5 +1,5 @@
 .reservation-notice {
-  padding-block: var(--space-8);
+  padding-block: var(--space-7);
 }
 .reservation-notice__container {
   max-width: var(--layout-max-width);
@@ -33,5 +33,10 @@
 @media (max-width: 575.98px) {
   .reservation-notice__content {
     flex-direction: column;
+  }
+}
+@media (min-width: 992px) {
+  .reservation-notice {
+    padding-block: var(--space-8);
   }
 }

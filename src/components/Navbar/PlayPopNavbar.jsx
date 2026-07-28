@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import playPopLogo from '../../assets/images/playpop-logo.png';
 import { WHATSAPP_URL } from '../../config/contact';

@@ -7,6 +7,16 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+@media (hover: hover) {
+  .contact-method-card:hover {
+    transform: translateY(calc(var(--space-1) * -1));
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .contact-method-card__icon {
@@ -40,6 +50,7 @@
   font-weight: var(--font-weight-semibold);
 }
 .contact-method-card__action {
+  min-height: 2.75rem;
   padding: var(--space-2) var(--space-3);
   color: var(--color-primary-dark);
   border-radius: var(--radius-sm);
@@ -49,6 +60,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .contact-method-card,
   .contact-method-card__action {
     transition: none;
   }

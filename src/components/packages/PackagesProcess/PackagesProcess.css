@@ -13,6 +13,23 @@
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+@media (hover: hover) {
+  .packages-process__step:hover {
+    transform: translateY(calc(var(--space-1) * -1));
+    box-shadow: var(--shadow-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packages-process__step {
+    transition: none;
+  }
 }
 
 .packages-process__step-header {

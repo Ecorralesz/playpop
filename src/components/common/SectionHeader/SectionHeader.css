@@ -35,3 +35,17 @@
   color: var(--color-text-muted);
   font-size: var(--font-size-lg);
 }
+
+@media (max-width: 575.98px) {
+  .section-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .section-header__title {
+    font-size: clamp(1.875rem, 10vw, 2.35rem);
+  }
+
+  .section-header__description {
+    font-size: 1rem;
+  }
+}
