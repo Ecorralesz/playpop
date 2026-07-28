@@ -1,5 +1,5 @@
 .quote-preparation {
-  padding-block: var(--space-8);
+  padding-block: var(--space-7);
 }
 .quote-preparation__container {
   max-width: var(--layout-max-width);
@@ -31,5 +31,10 @@
 @media (min-width: 768px) {
   .quote-preparation__list {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .quote-preparation {
+    padding-block: var(--space-8);
   }
 }

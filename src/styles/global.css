@@ -27,6 +27,14 @@ body {
   background-color: var(--color-background);
 }
 
+main {
+  overflow-x: clip;
+}
+
+.btn {
+  min-height: 2.75rem;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -53,4 +61,21 @@ a:hover {
 
 #root {
   min-height: 100vh;
+}
+
+@media (max-width: 575.98px) {
+  .container,
+  .container-fluid {
+    --bs-gutter-x: 2rem;
+  }
+
+  .btn {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
