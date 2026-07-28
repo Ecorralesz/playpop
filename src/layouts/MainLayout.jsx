@@ -1,5 +1,6 @@
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 
+import Footer from '../components/layout/Footer/Footer';
 import PlayPopNavbar from '../components/Navbar/PlayPopNavbar';
 import './MainLayout.css';
 
@@ -23,9 +24,7 @@ function MainLayout() {
         </div>
       </main>
 
-      <footer>
-        <div className="main-layout__wrapper px-3 py-3">PlayPop</div>
-      </footer>
+      <Footer />
     </div>
   );
 }
