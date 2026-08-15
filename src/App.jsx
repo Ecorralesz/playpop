@@ -9,6 +9,7 @@ import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         <Route path="/servicios" element={<ServicesPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/inflables/:slug" element={<ProductDetailPage />} />
+        <Route path="/juegos/:slug" element={<ProductDetailPage />} />
+        <Route path="/snacks/:slug" element={<ProductDetailPage />} />
         <Route path="/carrito" element={<CartPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

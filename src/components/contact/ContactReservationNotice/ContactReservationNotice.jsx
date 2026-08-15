@@ -1,4 +1,5 @@
 import { Container } from 'react-bootstrap';
+import { businessRules } from '../../../data/businessRules';
 import './ContactReservationNotice.css';
 
 function ContactReservationNotice() {
@@ -11,13 +12,10 @@ function ContactReservationNotice() {
             <h2 id="reservation-notice-heading">Importante antes de reservar</h2>
             <p>
               Esta solicitud no confirma la reservación. PlayPop debe confirmar disponibilidad,
-              transporte, condiciones de instalación y precio final. La fecha se reserva únicamente
-              después de recibir el adelanto del 50%.
+              transporte, condiciones de instalación y precio final.{' '}
+              {businessRules.reservation.deposit}
             </p>
-            <p>
-              El 50% restante se paga cuando PlayPop llega al lugar del evento y completa la
-              instalación del equipo.
-            </p>
+            <p>{businessRules.reservation.balance}</p>
           </div>
         </div>
       </Container>
