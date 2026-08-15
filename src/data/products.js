@@ -1,6 +1,16 @@
 import { generalInflatableRules } from './businessRules';
-
-const image = (folder, filename) => `/src/assets/images/playpop/${folder}/${filename}`;
+import balloonPopImage from '../assets/images/playpop/game/Juego-dardos-bombas.jpeg';
+import cornholeImage from '../assets/images/playpop/game/Juego-lanza-bolsas-vs.jpeg';
+import dardosGigantesImage from '../assets/images/playpop/game/Juego-dardos-clasico.jpeg';
+import footballTossImage from '../assets/images/playpop/game/Juego-touchdown.jpeg';
+import lanzamientoArosImage from '../assets/images/playpop/game/Juego-throw-rings.jpeg';
+import miniGolfImage from '../assets/images/playpop/game/Juego-golf.jpeg';
+import tumbaLatasImage from '../assets/images/playpop/game/Juego-bota-latas.jpeg';
+import castilloInflableImage from '../assets/images/playpop/inflatable/Castillo 3x3.jpeg';
+import inflableToboganImage from '../assets/images/playpop/inflatable/Castillo 5x4.jpeg';
+import inflableDeportivoImage from '../assets/images/playpop/inflatable/Inflable 3en1.jpeg';
+import algodonAzucarImage from '../assets/images/playpop/snack/Maquina-algodon.jpeg';
+import palomitasMaizImage from '../assets/images/playpop/snack/Maquina-palomitas.jpeg';
 
 const inflatable = (data) => ({
   category: 'inflatable',
@@ -44,7 +54,7 @@ export const products = [
       'Nadie debe colocarse frente o junto al objetivo mientras otra persona lanza.',
       'Utilizar únicamente el equipo suministrado por PlayPop.',
     ],
-    image: image('game', 'Juego-dardos-clasico.jpeg'),
+    image: dardosGigantesImage,
     imageAlt: 'Juego Dardos Gigantes de PlayPop',
   }),
   game({
@@ -57,7 +67,7 @@ export const products = [
     rules: [
       'Lanza los sacos para derribar las latas numeradas. Un participante a la vez dentro del área de lanzamiento.',
     ],
-    image: image('game', 'Juego-bota-latas.jpeg'),
+    image: tumbaLatasImage,
     imageAlt: 'Juego Tumba Latas de PlayPop',
   }),
   game({
@@ -70,7 +80,7 @@ export const products = [
     rules: [
       'Los participantes lanzan el balón hacia las aperturas del objetivo. Mantener una distancia segura de lanzamiento.',
     ],
-    image: image('game', 'Juego-touchdown.jpeg'),
+    image: footballTossImage,
     imageAlt: 'Juego Football Toss de PlayPop',
   }),
   game({
@@ -83,7 +93,7 @@ export const products = [
     rules: [
       'Los participantes juegan por turnos. Mantener a los demás alejados de la persona que está utilizando el palo.',
     ],
-    image: image('game', 'Juego-golf.jpeg'),
+    image: miniGolfImage,
     imageAlt: 'Juego Mini Golf de PlayPop',
   }),
   snack({
@@ -96,7 +106,7 @@ export const products = [
     preparation:
       'Preparadas frescas durante el evento por PlayPop. El área de preparación/equipo debe ser operada por personal responsable.',
     rules: ['El área de preparación/equipo debe ser operada por personal responsable.'],
-    image: image('snack', 'Maquina-palomitas.jpeg'),
+    image: palomitasMaizImage,
     imageAlt: 'Máquina de palomitas de maíz de PlayPop',
   }),
   game({
@@ -109,7 +119,7 @@ export const products = [
     rules: [
       'Los participantes lanzan los sacos hacia los orificios de puntuación. Todos deben permanecer detrás de la línea de lanzamiento.',
     ],
-    image: image('game', 'Juego-lanza-bolsas-vs.jpeg'),
+    image: cornholeImage,
     imageAlt: 'Juego de lanzamiento de sacos Cornhole de PlayPop',
   }),
   inflatable({
@@ -125,7 +135,7 @@ export const products = [
       ...generalInflatableRules,
       'El equipo no debe moverse después de la instalación sin autorización.',
     ],
-    image: image('inflatable', 'Castillo 5x4.jpeg'),
+    image: inflableToboganImage,
     imageAlt: 'Inflable con Tobogán 5 por 4 metros de PlayPop',
   }),
   inflatable({
@@ -141,7 +151,7 @@ export const products = [
       'Tres áreas de actividad. Los participantes deben rotar entre las actividades.',
       ...generalInflatableRules,
     ],
-    image: image('inflatable', 'Inflable 3en1.jpeg'),
+    image: inflableDeportivoImage,
     imageAlt: 'Inflable Deportivo 3 en 1 de PlayPop',
   }),
   game({
@@ -155,7 +165,7 @@ export const products = [
     rules: [
       'Solo un participante lanza a la vez. Todos los demás deben permanecer detrás de la línea de seguridad.',
     ],
-    image: image('game', 'Juego-dardos-bombas.jpeg'),
+    image: balloonPopImage,
     imageAlt: 'Juego Balloon Pop de PlayPop',
   }),
   snack({
@@ -167,7 +177,7 @@ export const products = [
     ageRestriction: 'Todas las edades',
     preparation: 'Preparado y empacado previamente por PlayPop. Se entrega listo para el evento.',
     rules: ['Se entrega preparado y empacado previamente.'],
-    image: image('snack', 'Maquina-algodon.jpeg'),
+    image: algodonAzucarImage,
     imageAlt: 'Máquina de algodón de azúcar de PlayPop',
   }),
   inflatable({
@@ -180,7 +190,7 @@ export const products = [
     courtesyGameCount: 1,
     badge: 'Incluye 1 juego de cortesía',
     rules: [...generalInflatableRules, 'No se debe escalar sobre paredes o mallas de seguridad.'],
-    image: image('inflatable', 'Castillo 3x3.jpeg'),
+    image: castilloInflableImage,
     imageAlt: 'Castillo Inflable 3 por 3 metros de PlayPop',
   }),
   game({
@@ -193,7 +203,7 @@ export const products = [
     rules: [
       'Los participantes lanzan los aros de colores hacia los objetivos. Un participante a la vez desde la línea designada.',
     ],
-    image: image('game', 'Juego-throw-rings.jpeg'),
+    image: lanzamientoArosImage,
     imageAlt: 'Juego Lanzamiento de Aros de PlayPop',
   }),
 ];
