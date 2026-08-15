@@ -2,25 +2,26 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import ProductCard from '../../common/ProductCard/ProductCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
-import inflatables from '../../../data/inflatables';
+import { getProductsByCategory } from '../../../data/products';
 import './InflatablesGrid.css';
 
 function InflatablesGrid() {
+  const inflatables = getProductsByCategory('inflatable');
   return (
     <section className="inflatables-grid" aria-labelledby="inflatables-grid-heading">
       <Container className="inflatables-grid__container">
         <SectionHeader
           eyebrow="Opciones para tu evento"
           title="Nuestro catálogo de inflables"
-          description="Estas opciones son ilustrativas mientras completamos el catálogo con fotografías y detalles confirmados."
+          description="Tres opciones reales para disfrutar durante 3 horas, con beneficios de juegos de cortesía."
           headingId="inflatables-grid-heading"
         />
 
         <aside className="inflatables-grid__notice" aria-label="Información sobre el catálogo">
           <i className="bi bi-info-circle-fill" aria-hidden="true" />
           <p>
-            La disponibilidad, el transporte, las condiciones de instalación y el precio final deben
-            ser confirmados directamente por PlayPop.
+            El costo de transporte se calcula según la ubicación del evento y se agrega a la
+            cotización final. La disponibilidad debe confirmarse con PlayPop.
           </p>
         </aside>
 

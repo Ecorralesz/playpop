@@ -1,8 +1,8 @@
 import { Container } from 'react-bootstrap';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
+import { businessRules } from '../../../data/businessRules';
 import './CoverageArea.css';
 
-const areas = ['Gran Área Metropolitana (GAM)', 'Occidente', 'Pérez Zeledón'];
 function CoverageArea() {
   return (
     <section className="coverage-area" aria-labelledby="coverage-area-heading">
@@ -14,7 +14,7 @@ function CoverageArea() {
           headingId="coverage-area-heading"
         />
         <ul className="coverage-area__list">
-          {areas.map((area) => (
+          {businessRules.transportation.coverageAreas.map((area) => (
             <li key={area}>
               <i className="bi bi-geo-alt-fill" aria-hidden="true" />
               {area}
@@ -23,8 +23,7 @@ function CoverageArea() {
         </ul>
         <p className="coverage-area__notice">
           <i className="bi bi-truck" aria-hidden="true" />
-          El transporte es pagado por el cliente y debe confirmarse como parte de la cotización
-          final.
+          {businessRules.transportation.notice}
         </p>
       </Container>
     </section>

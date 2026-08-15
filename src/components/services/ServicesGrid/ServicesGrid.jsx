@@ -1,33 +1,34 @@
 import { Col, Container, Row } from 'react-bootstrap';
-
-import ServiceCard from '../../common/ServiceCard/ServiceCard';
+import ProductCard from '../../common/ProductCard/ProductCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
-import services from '../../../data/services';
+import { getProductsByCategory } from '../../../data/products';
 import './ServicesGrid.css';
 
 function ServicesGrid() {
+  const games = getProductsByCategory('game');
+  const snacks = getProductsByCategory('snack');
   return (
     <section className="services-grid" aria-labelledby="services-grid-heading">
       <Container className="services-grid__container">
         <SectionHeader
           eyebrow="Opciones para complementar"
-          title="Nuestros servicios"
-          description="Estas opciones son preliminares mientras confirmamos detalles, disponibilidad y condiciones finales."
+          title="Juegos y snacks"
+          description="Conoce los juegos de cortesía, juegos premium y snacks reales de PlayPop."
           headingId="services-grid-heading"
         />
-
-        <aside className="services-grid__notice" aria-label="Información sobre los servicios">
-          <i className="bi bi-info-circle-fill" aria-hidden="true" />
-          <p>
-            Los detalles, la disponibilidad, el transporte y el precio final de cada servicio deben
-            confirmarse directamente con PlayPop.
-          </p>
-        </aside>
-
+        <h3 className="mt-4">Juegos</h3>
         <Row className="g-4">
-          {services.map((service) => (
-            <Col className="d-flex" key={service.id} md={6} xl={3}>
-              <ServiceCard service={service} />
+          {games.map((product) => (
+            <Col className="d-flex" key={product.id} md={6} xl={3}>
+              <ProductCard product={product} />
+            </Col>
+          ))}
+        </Row>
+        <h3 className="mt-5">Snacks</h3>
+        <Row className="g-4">
+          {snacks.map((product) => (
+            <Col className="d-flex" key={product.id} md={6} xl={3}>
+              <ProductCard product={product} />
             </Col>
           ))}
         </Row>
@@ -35,5 +36,4 @@ function ServicesGrid() {
     </section>
   );
 }
-
 export default ServicesGrid;

@@ -2,7 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import PackageCard from '../../common/PackageCard/PackageCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
-import featuredPackages from '../../../data/featuredPackages';
+import featuredPackages from '../../../data/packages';
 import './FeaturedPackages.css';
 
 function FeaturedPackages() {
