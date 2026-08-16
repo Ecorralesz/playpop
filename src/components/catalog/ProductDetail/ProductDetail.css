@@ -28,9 +28,32 @@
 }
 .product-detail__fact dd {
   margin: 0.25rem 0 0;
+  overflow-wrap: anywhere;
+}
+.product-detail__whatsapp {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-1);
+  color: #16883f;
+  font-weight: var(--font-weight-semibold);
+  text-underline-offset: 0.25rem;
+  border-radius: var(--radius-sm);
+}
+.product-detail__whatsapp:hover {
+  color: #106b31;
+  text-decoration-color: currentcolor;
 }
 @media (max-width: 575px) {
+  .product-detail {
+    padding-block: var(--space-6);
+  }
   .product-detail__facts {
     grid-template-columns: 1fr;
+  }
+  .product-detail__image {
+    max-height: 24rem;
   }
 }
