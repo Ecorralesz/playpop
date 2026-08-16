@@ -11,6 +11,7 @@ import inflableToboganImage from '../assets/images/playpop/inflatable/Castillo 5
 import inflableDeportivoImage from '../assets/images/playpop/inflatable/Inflable 3en1.jpeg';
 import algodonAzucarImage from '../assets/images/playpop/snack/Maquina-algodon.jpeg';
 import palomitasMaizImage from '../assets/images/playpop/snack/Maquina-palomitas.jpeg';
+import babyGymImage from '../assets/images/playpop/inflatable/Baby-gym.jpeg';
 
 const inflatable = (data) => ({
   category: 'inflatable',
@@ -40,6 +41,26 @@ const snack = (data) => ({
 });
 
 export const products = [
+  game({
+    id: 'baby-gym',
+    slug: 'baby-gym',
+    name: 'Baby Gym',
+    tier: 'premium',
+    price: 15000,
+    ageRestriction: '0 a 4 años',
+    description:
+      'Área de juego suave pensada para bebés y niños pequeños, con pelotas y superficies acolchadas para disfrutar en un espacio supervisado y apropiado para su edad.',
+    rules: [
+      'Supervisión adulta requerida.',
+      'Uso recomendado para bebés y niños de 0 a 4 años.',
+      'Mantener alimentos, bebidas y objetos punzocortantes fuera del área.',
+      'Mantener el área limpia y libre de objetos que puedan representar riesgo.',
+      'Utilizar el equipo únicamente para juego infantil apropiado para la edad.',
+      'No mover el equipo después de la instalación sin autorización de PlayPop.',
+    ],
+    image: babyGymImage,
+    imageAlt: 'Baby Gym de PlayPop para bebés y niños pequeños',
+  }),
   game({
     id: 'dardos-gigantes',
     slug: 'dardos-gigantes',

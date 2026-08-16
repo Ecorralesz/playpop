@@ -74,6 +74,7 @@ function ProductDetailPage() {
                 <p>{product.preparation}</p>
               </>
             )}
+            {product.description && <p>{product.description}</p>}
             <h2>Reglas de uso</h2>
             <ul>
               {product.rules.map((rule) => (
