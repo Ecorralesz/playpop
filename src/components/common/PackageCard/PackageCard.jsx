@@ -4,7 +4,17 @@ import { formatColones } from '../../../data/pricing';
 import './PackageCard.css';
 
 function PackageCard({ packageData }) {
-  const { name, shortDescription, badge, route, features, price } = packageData;
+  const {
+    name,
+    shortDescription,
+    badge,
+    route,
+    features,
+    price,
+    priceLabel,
+    rentalHours,
+    details,
+  } = packageData;
 
   return (
     <article className="package-card">
@@ -12,7 +22,8 @@ function PackageCard({ packageData }) {
         <span className="package-card__badge">{badge}</span>
         <h3 className="package-card__name">{name}</h3>
         <p>
-          <strong>{formatColones(price)}</strong> / 3 horas
+          <strong>{priceLabel ?? formatColones(price)}</strong>
+          {rentalHours ? ` / ${rentalHours} horas` : ''}
         </p>
         <p className="package-card__description">{shortDescription}</p>
         <ul className="package-card__features" aria-label={`Características de ${name}`}>
@@ -23,6 +34,11 @@ function PackageCard({ packageData }) {
             </li>
           ))}
         </ul>
+        {details?.map((detail) => (
+          <p className="package-card__detail" key={detail}>
+            {detail}
+          </p>
+        ))}
         <Link className="package-card__link" to={route}>
           Solicitar cotización
           <i className="bi bi-arrow-right" aria-hidden="true" />

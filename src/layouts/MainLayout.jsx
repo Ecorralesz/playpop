@@ -2,11 +2,13 @@ import { Outlet } from 'react-router-dom';
 
 import Footer from '../components/layout/Footer/Footer';
 import PlayPopNavbar from '../components/Navbar/PlayPopNavbar';
+import ScrollToTop from '../components/common/ScrollToTop/ScrollToTop';
 import './MainLayout.css';
 
 function MainLayout() {
   return (
     <div className="d-flex min-vh-100 flex-column">
+      <ScrollToTop />
       <a
         className="visually-hidden-focusable position-absolute m-3 btn btn-primary"
         href="#main-content"
