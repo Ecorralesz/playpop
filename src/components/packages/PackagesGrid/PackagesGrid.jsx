@@ -25,7 +25,7 @@ function PackagesGrid() {
         </aside>
         <Row className="g-4">
           {packages.map((item) => (
-            <Col className="d-flex" key={item.id} md={6}>
+            <Col className="d-flex" key={item.id} md={6} lg={4}>
               <PackageCard packageData={item} />
             </Col>
           ))}

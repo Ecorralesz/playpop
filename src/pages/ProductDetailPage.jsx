@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { businessRules } from '../data/businessRules';
 import { formatColones, pricing } from '../data/pricing';
@@ -89,15 +89,16 @@ function ProductDetailPage() {
             <p>
               <i className="bi bi-truck" aria-hidden="true" /> {businessRules.transportation.notice}
             </p>
-            <Button
-              as="a"
+            <a
+              className="product-detail__whatsapp"
               href={quoteUrl}
               target="_blank"
               rel="noreferrer"
               aria-label={`Cotizar ${product.name} por WhatsApp`}
             >
+              <i className="bi bi-whatsapp" aria-hidden="true" />
               Cotizar por WhatsApp
-            </Button>
+            </a>
           </Col>
         </Row>
       </Container>
