@@ -1,20 +1,11 @@
 import { Link } from 'react-router-dom';
 import { formatColones } from '../../../data/pricing';
+import { getPackageCardFeatures, getPackageRoute } from '../../../data/packages';
 
 import './PackageCard.css';
 
 function PackageCard({ packageData }) {
-  const {
-    name,
-    shortDescription,
-    badge,
-    route,
-    features,
-    price,
-    priceLabel,
-    rentalHours,
-    details,
-  } = packageData;
+  const { name, shortDescription, badge, price, priceLabel, rentalHours, details } = packageData;
 
   return (
     <article className="package-card">
@@ -27,7 +18,7 @@ function PackageCard({ packageData }) {
         </p>
         <p className="package-card__description">{shortDescription}</p>
         <ul className="package-card__features" aria-label={`Características de ${name}`}>
-          {features.map((feature) => (
+          {getPackageCardFeatures(packageData).map((feature) => (
             <li key={feature}>
               <i className="bi bi-check-circle-fill" aria-hidden="true" />
               {feature}
@@ -39,8 +30,8 @@ function PackageCard({ packageData }) {
             {detail}
           </p>
         ))}
-        <Link className="package-card__link" to={route}>
-          Solicitar cotización
+        <Link className="package-card__link" to={getPackageRoute(packageData)}>
+          Ver paquete
           <i className="bi bi-arrow-right" aria-hidden="true" />
         </Link>
       </div>
