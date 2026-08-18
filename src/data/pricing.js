@@ -7,9 +7,9 @@ export const pricing = {
   packageAddOns: { courtesyGame: 8000, premiumGame: 12000 },
   snacks: {
     cottonCandy: { 10: 10000, 20: 20000, 30: 30000 },
-    popcorn: { 10: 20000, 20: 40000, 30: 60000 },
+    popcorn: { 10: 10000, 20: 20000, 30: 30000 },
   },
 };
 
-export const formatColones = (amount) =>
-  amount == null ? 'Por confirmar' : `₡${new Intl.NumberFormat('es-CR').format(amount)}`;
+export const formatColones = (amount, fallback = 'Por confirmar') =>
+  amount == null || amount <= 0 ? fallback : `₡${new Intl.NumberFormat('es-CR').format(amount)}`;
