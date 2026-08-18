@@ -10,6 +10,7 @@ import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import PackageDetailPage from './pages/PackageDetailPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/inflables" element={<InflatablesPage />} />
         <Route path="/paquetes" element={<PackagesPage />} />
+        <Route path="/paquetes/:slug" element={<PackageDetailPage />} />
         <Route path="/servicios" element={<ServicesPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/contacto" element={<ContactPage />} />

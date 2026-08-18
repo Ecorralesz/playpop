@@ -64,9 +64,9 @@ export const products = [
   game({
     id: 'dardos-gigantes',
     slug: 'dardos-gigantes',
-    name: 'Dardos Gigantes',
-    tier: 'premium',
-    price: 15000,
+    name: 'Dardos',
+    tier: 'courtesy',
+    price: 10000,
     ageRestriction:
       'Recomendado para mayores de 10 años. Niños menores únicamente con supervisión directa de un adulto.',
     rules: [
@@ -76,7 +76,7 @@ export const products = [
       'Utilizar únicamente el equipo suministrado por PlayPop.',
     ],
     image: dardosGigantesImage,
-    imageAlt: 'Juego Dardos Gigantes de PlayPop',
+    imageAlt: 'Juego Dardos de PlayPop',
   }),
   game({
     id: 'tumba-latas',
@@ -121,7 +121,7 @@ export const products = [
     id: 'palomitas-maiz',
     slug: 'palomitas-de-maiz',
     name: 'Palomitas de Maíz',
-    price: 2000,
+    price: 1000,
     priceUnit: 'cada unidad',
     ageRestriction: 'Todas las edades',
     preparation:
@@ -179,8 +179,8 @@ export const products = [
     id: 'balloon-pop',
     slug: 'balloon-pop',
     name: 'Balloon Pop',
-    tier: 'courtesy',
-    price: 10000,
+    tier: 'premium',
+    price: 15000,
     ageRestriction:
       'Recomendado para mayores de 10 años si se juega con dardos. Supervisión directa de un adulto requerida.',
     rules: [
@@ -235,3 +235,10 @@ export const getProductRoute = ({ category, slug }) =>
 export const getProductBySlug = (slug) => products.find((product) => product.slug === slug);
 export const getProductsByCategory = (category) =>
   products.filter((product) => product.category === category);
+export const getProductsByIds = (ids = []) =>
+  ids?.map((id) => products.find((product) => product.id === id)).filter(Boolean) ?? [];
+export const gameIdsByTier = {
+  courtesy: ['tumba-latas', 'dardos-gigantes', 'cornhole', 'lanzamiento-aros'],
+  premium: ['balloon-pop', 'football-toss', 'mini-golf'],
+};
+export const getGamesByTier = (tier) => getProductsByIds(gameIdsByTier[tier]);
