@@ -12,8 +12,8 @@ function GalleryPreview() {
       <Container className="gallery-preview__container">
         <SectionHeader
           eyebrow="Momentos llenos de diversión"
-          title="Así se vive una celebración con PlayPop"
-          description="Explora una muestra de los espacios y experiencias que queremos crear para cada evento."
+          title="Conoce los equipos de PlayPop"
+          description="Fotografías reales de nuestros inflables y juegos."
           headingId="gallery-preview-heading"
         />
 

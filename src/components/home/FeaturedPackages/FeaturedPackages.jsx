@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import PackageCard from '../../common/PackageCard/PackageCard';
@@ -17,12 +18,15 @@ function FeaturedPackages() {
         />
 
         <Row className="g-4">
-          {featuredPackages.map((packageData) => (
+          {featuredPackages.slice(0, 3).map((packageData) => (
             <Col className="d-flex" key={packageData.id} md={6} lg={4}>
               <PackageCard packageData={packageData} />
             </Col>
           ))}
         </Row>
+        <Link className="btn btn-outline-primary mt-4" to="/paquetes">
+          Ver todos los paquetes
+        </Link>
       </Container>
     </section>
   );

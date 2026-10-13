@@ -1,67 +1,30 @@
-const galleryItems = [
-  {
-    id: 'celebracion-infantil',
-    title: 'Celebración infantil',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'diversion-en-familia',
-    title: 'Diversión en familia',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'fiesta-llena-de-color',
-    title: 'Fiesta llena de color',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'momento-de-juegos',
-    title: 'Momento de juegos',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'evento-especial',
-    title: 'Evento especial',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'experiencia-playpop',
-    title: 'Experiencia PlayPop',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'celebracion-al-aire-libre',
-    title: 'Celebración al aire libre',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'dia-de-diversion',
-    title: 'Día de diversión',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'espacio-para-compartir',
-    title: 'Espacio para compartir',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
+import { getPublicEventCollections } from './eventCollections';
+import { getProductsByCategory } from './products';
+
+export const galleryCategories = [
+  { id: 'all', label: 'Todos' },
+  { id: 'event', label: 'Eventos' },
+  { id: 'game', label: 'Juegos' },
+  { id: 'inflatable', label: 'Inflables' },
 ];
+
+// Images are imported by the catalog through Vite. Future event photos can be
+// imported here and appended with id, image, category, imageAlt and caption.
+const equipmentItems = [
+  ...getProductsByCategory('inflatable'),
+  ...getProductsByCategory('game'),
+].map((product) => ({
+  id: product.id,
+  title: product.name,
+  image: product.image,
+  category: product.category,
+  imageAlt: product.imageAlt,
+  caption: null,
+}));
+
+const galleryItems = [...getPublicEventCollections(), ...equipmentItems];
+
+export const getGalleryItemsByCategory = (category) =>
+  category === 'all' ? galleryItems : galleryItems.filter((item) => item.category === category);
 
 export default galleryItems;

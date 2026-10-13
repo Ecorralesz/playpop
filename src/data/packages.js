@@ -1,79 +1,72 @@
 import { getProductsByIds } from './products';
+import { pricing } from './pricing';
+
+const fixedPackage = (
+  id,
+  name,
+  price,
+  inflatableIds,
+  standardGameCount,
+  premiumGameCount = 0,
+  extra = {},
+) => ({
+  id,
+  slug: id,
+  name,
+  price,
+  inflatableIds,
+  standardGameCount,
+  premiumGameCount,
+  rentalHours: pricing.standardRentalHours,
+  badge: inflatableIds.length === 1 ? 'Un inflable' : 'Dos inflables',
+  shortDescription: `${name}: inflables y juegos para tu celebración.`,
+  installationIncluded: true,
+  snacks: [],
+  details: ['Selección de juegos sujeta a disponibilidad.'],
+  ...extra,
+});
 
 export const packages = [
-  {
-    id: 'super-pop',
-    name: 'Super Pop',
-    slug: 'super-pop',
-    price: 70000,
-    rentalHours: 3,
-    badge: 'Paquete',
-    shortDescription:
-      'Una combinación de inflable y juegos premium para una celebración llena de actividad.',
-    inflatableIds: ['inflable-tobogan'],
-    premiumGameCount: 2,
-    courtesyGameCount: 0,
-    snacks: [],
-    features: ['2 juegos premium', 'Instalación y retiro'],
+  fixedPackage('mini-pop', 'Mini Pop', 45000, ['castillo-inflable'], 1),
+  fixedPackage('super-pop', 'Super Pop', 60000, ['inflable-tobogan'], 2),
+  fixedPackage('super-pop-plus', 'Super Pop Plus', 70000, ['inflable-tobogan'], 2, 1),
+  fixedPackage('sport-pop', 'Sport Pop', 65000, ['inflable-deportivo-3-en-1'], 2),
+  fixedPackage('baby-pop', 'Baby Pop', 40000, ['baby-gym'], 1, 0, {
+    requiresGameApproval: true,
     details: [
-      'Opciones premium: Balloon Pop, Mini Golf o Football Toss.',
-      'Selección sujeta a disponibilidad.',
+      'La selección del juego estándar requiere aprobación de PlayPop según la edad de los participantes. No se ha confirmado su adecuación para bebés.',
     ],
-    installationIncluded: true,
-  },
-  {
-    id: 'playpop-experience',
-    name: 'PlayPop Experience',
-    slug: 'playpop-experience',
-    price: 90000,
-    rentalHours: 3,
-    badge: 'Paquete',
-    shortDescription:
-      'La experiencia PlayPop con inflable, juegos y un detalle dulce listo para compartir.',
-    inflatableIds: ['inflable-tobogan'],
-    courtesyGameCount: 2,
-    premiumGameCount: 1,
-    snacks: [{ productId: 'algodon-azucar', quantity: 10 }],
-    features: ['2 juegos de cortesía', '1 juego premium', 'Instalación y retiro'],
-    details: ['Preparado y empacado previamente por PlayPop. Se entrega listo para el evento.'],
-    installationIncluded: true,
-  },
-  {
-    id: 'doble-diversion',
-    name: 'Doble Diversión',
-    slug: 'doble-diversion',
-    price: null,
-    priceLabel: 'Consultar',
-    rentalHours: 3,
-    badge: 'Dos inflables',
-    shortDescription:
-      'Una opción para celebraciones más grandes que combina dos inflables con juegos PlayPop.',
-    inflatableIds: ['castillo-inflable', 'inflable-tobogan'],
-    courtesyGameCount: 2,
-    premiumGameCount: 0,
-    snacks: [],
-    features: ['2 juegos de cortesía', 'Instalación y retiro'],
-    details: ['Selección de juegos sujeta a disponibilidad.'],
-    installationIncluded: true,
-  },
-  {
-    id: 'fiesta-deportiva',
-    name: 'Fiesta Deportiva',
-    slug: 'fiesta-deportiva',
-    price: null,
-    priceLabel: 'Consultar',
-    rentalHours: 3,
-    badge: 'Experiencia deportiva',
-    shortDescription:
-      'Una experiencia con varias áreas de juego para eventos con más participantes.',
-    inflatableIds: ['inflable-tobogan', 'inflable-deportivo-3-en-1'],
-    courtesyGameCount: 1,
-    premiumGameCount: 1,
-    snacks: [],
-    features: ['1 juego premium', '1 juego de cortesía', 'Instalación y retiro'],
-    details: ['Selección de juegos sujeta a disponibilidad.'],
-    installationIncluded: true,
-  },
+  }),
+  fixedPackage(
+    'doble-diversion',
+    'Doble Diversión',
+    90000,
+    ['castillo-inflable', 'inflable-tobogan'],
+    2,
+  ),
+  fixedPackage(
+    'doble-pop-plus',
+    'Doble Pop Plus',
+    100000,
+    ['castillo-inflable', 'inflable-tobogan'],
+    2,
+    1,
+  ),
+  fixedPackage(
+    'doble-deportivo',
+    'Doble Deportivo',
+    105000,
+    ['inflable-tobogan', 'inflable-deportivo-3-en-1'],
+    2,
+  ),
+  fixedPackage(
+    'mega-playpop',
+    'Mega PlayPop',
+    115000,
+    ['inflable-tobogan', 'inflable-deportivo-3-en-1'],
+    3,
+    1,
+  ),
   {
     id: 'feria-playpop',
     slug: 'feria-playpop',
@@ -81,32 +74,40 @@ export const packages = [
     price: null,
     priceLabel: 'Consultar',
     rentalHours: null,
-    badge: 'Experiencia completa',
-    shortDescription:
-      'La experiencia PlayPop más completa para eventos grandes, con múltiples inflables, juegos y opciones adicionales.',
+    badge: 'Cotización personalizada',
+    shortDescription: 'Múltiples atracciones y snacks opcionales para un evento a tu medida.',
     inflatableIds: null,
-    courtesyGameCount: null,
+    standardGameCount: null,
     premiumGameCount: null,
     snacks: null,
-    features: [
-      'Múltiples inflables',
-      'Juegos y opciones adicionales',
-      'Configuración por confirmar',
-    ],
+    installationIncluded: true,
     details: [
-      'Los contenidos, la duración y el precio se confirman según las necesidades del evento.',
+      'Equipo, cantidades, duración y precio se confirman con PlayPop. Los snacks son opcionales.',
     ],
-    installationIncluded: null,
   },
 ];
 
+export const retiredPackageSlugs = ['playpop-experience', 'fiesta-deportiva'];
 export const getPackageBySlug = (slug) => packages.find((item) => item.slug === slug);
 export const getPackageRoute = (item) => `/paquetes/${item.slug}`;
+export const getPackageFeatures = (item) => [
+  ...(item.standardGameCount != null
+    ? [
+        `${item.standardGameCount} ${item.standardGameCount === 1 ? 'juego estándar' : 'juegos estándar'}${item.requiresGameApproval ? ' (selección con aprobación de PlayPop)' : ''}`,
+      ]
+    : ['Atracciones por confirmar']),
+  ...(item.premiumGameCount
+    ? [
+        `${item.premiumGameCount} ${item.premiumGameCount === 1 ? 'juego premium' : 'juegos premium'}`,
+      ]
+    : []),
+  ...(item.installationIncluded ? ['Instalación y retiro'] : []),
+];
 export const getPackageCardFeatures = (item) => [
   ...getProductsByIds(item.inflatableIds).map(
     (product) => `${product.name}${product.dimensions ? ` ${product.dimensions}` : ''}`,
   ),
-  ...(item.features ?? []),
+  ...getPackageFeatures(item),
 ];
 
 export default packages;

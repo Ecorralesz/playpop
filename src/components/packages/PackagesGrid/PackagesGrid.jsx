@@ -13,7 +13,7 @@ function PackagesGrid() {
         <SectionHeader
           eyebrow="Combinaciones para celebrar"
           title="Nuestros paquetes"
-          description="Paquetes reales para combinar inflables, juegos y snacks durante 3 horas."
+          description="Paquetes de precio fijo con inflables y juegos durante 3 horas. Feria PlayPop se cotiza a medida."
           headingId="packages-grid-heading"
         />
         <aside className="packages-grid__notice">
@@ -33,8 +33,8 @@ function PackagesGrid() {
         <div className="mt-5">
           <SectionHeader
             eyebrow="Alquiler estándar"
-            title="Ofertas de inflables"
-            description="Cada inflable conserva su precio normal y los juegos de cortesía indicados."
+            title="Alquiler de inflables"
+            description="También puedes alquilar inflables por separado. Consulta los precios según la duración."
             headingId="inflatable-offers-heading"
           />
         </div>

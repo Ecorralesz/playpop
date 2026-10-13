@@ -1,7 +1,7 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './PackagesPageHero.css';
 
 function PackagesPageHero() {
@@ -15,11 +15,16 @@ function PackagesPageHero() {
               Encuentra un paquete para tu evento
             </h1>
             <p className="packages-page-hero__description">
-              Explora opciones preliminares y contáctanos para confirmar contenidos, disponibilidad,
-              transporte y precio final.
+              Elige un paquete de 3 horas con precio fijo o solicita una Feria PlayPop a medida. El
+              transporte se cotiza aparte; confirma disponibilidad con PlayPop.
             </p>
             <div className="packages-page-hero__actions">
-              <Button href={WHATSAPP_URL} rel="noreferrer" target="_blank" variant="success">
+              <Button
+                href={GENERAL_QUOTATION_URL}
+                rel="noreferrer"
+                target="_blank"
+                variant="success"
+              >
                 <i className="bi bi-whatsapp" aria-hidden="true" />
                 Cotizar por WhatsApp
                 <span className="visually-hidden"> (abre en una nueva pestaña)</span>

@@ -1,19 +1,12 @@
+import { socialLinks } from '../../../config/social';
+import { navigationItems } from '../../../config/navigation';
 import { Link } from 'react-router-dom';
 
 import playPopLogo from '../../../assets/images/playpop-logo.png';
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './Footer.css';
 
-const navigationItems = [
-  { label: 'Inicio', to: '/' },
-  { label: 'Inflables', to: '/inflables' },
-  { label: 'Paquetes', to: '/paquetes' },
-  { label: 'Servicios', to: '/servicios' },
-  { label: 'Galería', to: '/galeria' },
-  { label: 'Contacto', to: '/contacto' },
-];
-
-const pendingContactItems = ['Instagram', 'Facebook', 'Correo electrónico'];
+const pendingContactItems = ['Correo electrónico'];
 
 const coverageAreas = ['Gran Área Metropolitana (GAM)', 'Occidente', 'Pérez Zeledón'];
 
@@ -69,7 +62,7 @@ function Footer() {
             </h2>
             <a
               className="playpop-footer__whatsapp"
-              href={WHATSAPP_URL}
+              href={GENERAL_QUOTATION_URL}
               rel="noreferrer"
               target="_blank"
             >
@@ -78,6 +71,21 @@ function Footer() {
               <span className="visually-hidden"> (abre en una nueva pestaña)</span>
             </a>
             <ul className="playpop-footer__list playpop-footer__pending-list">
+              {socialLinks.map(({ id, name, icon, href, ariaLabel }) => (
+                <li className="playpop-footer__pending-item" key={id}>
+                  <a
+                    className="playpop-footer__link"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={ariaLabel}
+                  >
+                    <i className={`bi ${icon} me-2`} aria-hidden="true" />
+                    {name}
+                    <span className="visually-hidden"> (abre en una nueva pestaña)</span>
+                  </a>
+                </li>
+              ))}
               {pendingContactItems.map((item) => (
                 <li className="playpop-footer__pending-item" key={item}>
                   <span>{item}</span>

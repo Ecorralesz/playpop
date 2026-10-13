@@ -13,7 +13,7 @@ export const businessRules = {
     included: false,
     requiresLocation: true,
     notice:
-      'El costo de transporte se calcula según la ubicación del evento y se agrega a la cotización final.',
+      'El transporte no está incluido. Se cotiza según la ubicación del evento y se agrega a la cotización final.',
     coverageAreas: [
       'Gran Área Metropolitana (GAM)',
       'Occidente',
@@ -23,6 +23,7 @@ export const businessRules = {
   },
   reservation: {
     depositPercent: 50,
+    notice: 'Enviar un mensaje por WhatsApp no confirma la reservación.',
     deposit: 'Se requiere un adelanto del 50% para reservar la fecha.',
     balance:
       'El 50% restante se paga cuando PlayPop llega al lugar del evento y completa la instalación del equipo.',
@@ -31,5 +32,6 @@ export const businessRules = {
     customerService: ['Lunes–sábado: 8:00 a. m. – 7:00 p. m.', 'Domingo: 9:00 a. m. – 5:00 p. m.'],
     events: 'Lunes–domingo: con reservación y sujeto a disponibilidad.',
   },
+  installation: 'Instalación y retiro incluidos con el alquiler de inflables.',
   additionalTime: 'Sujeto a disponibilidad y al horario del evento.',
 };

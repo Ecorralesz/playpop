@@ -1,6 +1,6 @@
 import { Button, Container } from 'react-bootstrap';
 
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './PackagesQuotationCTA.css';
 
 function PackagesQuotationCTA() {
@@ -15,7 +15,7 @@ function PackagesQuotationCTA() {
             Escríbenos por WhatsApp para revisar los paquetes disponibles según la fecha, ubicación
             y necesidades de tu celebración.
           </p>
-          <Button href={WHATSAPP_URL} rel="noreferrer" target="_blank" variant="light">
+          <Button href={GENERAL_QUOTATION_URL} rel="noreferrer" target="_blank" variant="light">
             <i className="bi bi-whatsapp" aria-hidden="true" />
             Cotizar por WhatsApp
             <span className="visually-hidden"> (abre en una nueva pestaña)</span>
