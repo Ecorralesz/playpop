@@ -1,8 +1,8 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import { WHATSAPP_URL } from '../config/contact';
+import { getQuotationUrl } from '../config/contact';
 import { businessRules } from '../data/businessRules';
-import { getPackageBySlug } from '../data/packages';
+import { getPackageBySlug, getPackageFeatures, retiredPackageSlugs } from '../data/packages';
 import { formatColones } from '../data/pricing';
 import { getGamesByTier, getProductsByIds } from '../data/products';
 import '../components/packages/PackageDetail/PackageDetail.css';
@@ -17,7 +17,11 @@ function PackageDetailPage() {
     return (
       <Container className="py-5">
         <h1>Paquete no encontrado</h1>
-        <p>La información de este paquete está por confirmar.</p>
+        <p>
+          {retiredPackageSlugs.includes(slug)
+            ? 'Este paquete ya no forma parte del catálogo. Consulta nuestros paquetes actuales.'
+            : 'Consulta nuestros paquetes actuales con PlayPop.'}
+        </p>
         <Link to="/paquetes">Volver a paquetes</Link>
       </Container>
     );
@@ -28,7 +32,11 @@ function PackageDetailPage() {
     ...snack,
     product: getProductsByIds([snack.productId])[0],
   }));
-  const quoteUrl = `${WHATSAPP_URL}?text=${encodeURIComponent(`Hola, deseo cotizar el paquete ${packageData.name}.`)}`;
+  const quoteUrl = getQuotationUrl({
+    name: packageData.name,
+    hours: packageData.rentalHours,
+    isPackage: true,
+  });
 
   return (
     <section className="package-detail">
@@ -74,7 +82,7 @@ function PackageDetailPage() {
 
             <h2>Contenido del paquete</h2>
             <ul className="package-detail__features">
-              {packageData.features?.map((feature) => (
+              {getPackageFeatures(packageData).map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
               {snacks.map(({ product, quantity }) => (
@@ -90,18 +98,31 @@ function PackageDetailPage() {
           <Col lg={5}>
             <aside className="package-detail__options">
               <h2>Opciones de juegos</h2>
-              <h3>Cortesía ({packageData.courtesyGameCount ?? 'Por confirmar'})</h3>
-              <p>
-                {getGamesByTier('courtesy')
-                  .map(({ name }) => name)
-                  .join(', ')}
-              </p>
-              <h3>Premium ({packageData.premiumGameCount ?? 'Por confirmar'})</h3>
-              <p>
-                {getGamesByTier('premium')
-                  .map(({ name }) => name)
-                  .join(', ')}
-              </p>
+              {packageData.requiresGameApproval ? (
+                <p>PlayPop debe aprobar un juego adecuado según la edad de los participantes.</p>
+              ) : packageData.standardGameCount == null ? (
+                <p>Selección y cantidades por confirmar con PlayPop.</p>
+              ) : (
+                <>
+                  <h3>Estándar ({packageData.standardGameCount})</h3>
+                  <p>
+                    {getGamesByTier('standard')
+                      .map(({ name }) => name)
+                      .join(', ')}
+                  </p>
+                  {packageData.premiumGameCount > 0 && (
+                    <>
+                      <h3>Premium ({packageData.premiumGameCount})</h3>
+                      <p>
+                        {getGamesByTier('premium')
+                          .map(({ name }) => name)
+                          .join(', ')}
+                      </p>
+                    </>
+                  )}
+                </>
+              )}
+              <p>{businessRules.reservation.notice}</p>
               <p>
                 <i className="bi bi-truck" aria-hidden="true" />{' '}
                 {businessRules.transportation.notice}

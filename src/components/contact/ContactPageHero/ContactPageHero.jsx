@@ -1,7 +1,7 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './ContactPageHero.css';
 
 function ContactPageHero() {
@@ -19,7 +19,12 @@ function ContactPageHero() {
               celebración.
             </p>
             <div className="contact-page-hero__actions">
-              <Button href={WHATSAPP_URL} rel="noreferrer" target="_blank" variant="success">
+              <Button
+                href={GENERAL_QUOTATION_URL}
+                rel="noreferrer"
+                target="_blank"
+                variant="success"
+              >
                 <i className="bi bi-whatsapp" aria-hidden="true" /> Escribir por WhatsApp
                 <span className="visually-hidden"> (abre en una nueva pestaña)</span>
               </Button>

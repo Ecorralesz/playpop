@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import InflatablesPage from './pages/InflatablesPage';
 import PackagesPage from './pages/PackagesPage';
+import GamesPage from './pages/GamesPage';
 import ServicesPage from './pages/ServicesPage';
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/inflables" element={<InflatablesPage />} />
         <Route path="/paquetes" element={<PackagesPage />} />
         <Route path="/paquetes/:slug" element={<PackageDetailPage />} />
+        <Route path="/juegos" element={<GamesPage />} />
         <Route path="/servicios" element={<ServicesPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/contacto" element={<ContactPage />} />

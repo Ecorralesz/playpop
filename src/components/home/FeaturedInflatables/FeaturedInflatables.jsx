@@ -2,15 +2,11 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import ProductCard from '../../common/ProductCard/ProductCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
-import { products } from '../../../data/products';
+import { getProductsByCategory } from '../../../data/products';
 import './FeaturedInflatables.css';
 
 function FeaturedInflatables() {
-  const featuredInflatables = [
-    'inflable-con-tobogan',
-    'castillo-inflable',
-    'inflable-deportivo-3-en-1',
-  ].map((slug) => products.find((product) => product.slug === slug));
+  const featuredInflatables = getProductsByCategory('inflatable');
   return (
     <section className="featured-inflatables" aria-labelledby="featured-inflatables-heading">
       <Container className="featured-inflatables__container">

@@ -1,7 +1,7 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './GalleryPageHero.css';
 
 function GalleryPageHero() {
@@ -15,11 +15,15 @@ function GalleryPageHero() {
               Inspírate para tu próxima celebración
             </h1>
             <p className="gallery-page-hero__description">
-              Explora una muestra ilustrativa de los espacios, colores y experiencias que queremos
-              crear en cada evento.
+              Explora momentos PlayPop y fotografías reales de nuestros inflables y juegos.
             </p>
             <div className="gallery-page-hero__actions">
-              <Button href={WHATSAPP_URL} rel="noreferrer" target="_blank" variant="success">
+              <Button
+                href={GENERAL_QUOTATION_URL}
+                rel="noreferrer"
+                target="_blank"
+                variant="success"
+              >
                 <i className="bi bi-whatsapp" aria-hidden="true" />
                 Cotizar por WhatsApp
                 <span className="visually-hidden"> (abre en una nueva pestaña)</span>
