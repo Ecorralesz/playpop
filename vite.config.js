@@ -7,11 +7,17 @@ export default defineConfig({
   build: {
     rolldownOptions: {
       output: {
-        // Keep private event folder/filename labels out of public asset URLs.
-        assetFileNames: (asset) =>
-          asset.originalFileNames.some((name) => name.replaceAll('\\', '/').includes('/events/'))
-            ? 'assets/moment-[hash][extname]'
-            : 'assets/[name]-[hash][extname]',
+        assetFileNames: (asset) => {
+          // Preserve anonymous event photo URLs from the approved gallery.
+          if (
+            asset.originalFileNames.some((name) => name.replaceAll('\\', '/').includes('/events/'))
+          ) {
+            return 'assets/moment-[hash][extname]';
+          }
+          return asset.names.some((name) => name.endsWith('.mp4'))
+            ? 'assets/playpop-video-[hash][extname]'
+            : 'assets/[name]-[hash][extname]';
+        },
       },
     },
   },

@@ -2,20 +2,14 @@ import './GalleryCard.css';
 
 function GalleryCard({ item, onOpen }) {
   const { title, image, imageAlt, badge, caption, description, photos } = item;
+  if (!image) return null;
 
   return (
     <article
       className={`gallery-card${item.category === 'game' || item.category === 'inflatable' ? ' gallery-card--artwork' : ''}`}
     >
       <div className="gallery-card__visual">
-        {image ? (
-          <img className="gallery-card__image" src={image} alt={imageAlt} loading="lazy" />
-        ) : (
-          <div className="gallery-card__placeholder">
-            <i className="bi bi-camera" aria-hidden="true" />
-            <span>Fotografía próximamente</span>
-          </div>
-        )}
+        <img className="gallery-card__image" src={image} alt={imageAlt} loading="lazy" />
         {badge && <span className="gallery-card__badge">{badge}</span>}
       </div>
       <div className="gallery-card__body">

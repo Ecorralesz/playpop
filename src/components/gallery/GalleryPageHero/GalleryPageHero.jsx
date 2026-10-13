@@ -15,7 +15,7 @@ function GalleryPageHero() {
               Inspírate para tu próxima celebración
             </h1>
             <p className="gallery-page-hero__description">
-              Explora momentos PlayPop y fotografías reales de nuestros inflables y juegos.
+              Explora fotografías y videos reales de nuestros eventos, inflables y juegos.
             </p>
             <div className="gallery-page-hero__actions">
               <Button

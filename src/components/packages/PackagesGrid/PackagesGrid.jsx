@@ -13,7 +13,7 @@ function PackagesGrid() {
         <SectionHeader
           eyebrow="Combinaciones para celebrar"
           title="Nuestros paquetes"
-          description="Paquetes de precio fijo con inflables y juegos durante 3 horas. Feria PlayPop se cotiza a medida."
+          description="Combina inflables y juegos durante 3 horas. Consulta el precio y contenido de cada paquete; Feria PlayPop se cotiza a medida."
           headingId="packages-grid-heading"
         />
         <aside className="packages-grid__notice">

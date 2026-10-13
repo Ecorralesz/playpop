@@ -1,9 +1,9 @@
-import { socialLinks } from '../../../config/social';
-import { navigationItems } from '../../../config/navigation';
 import { Link } from 'react-router-dom';
 
 import playPopLogo from '../../../assets/images/playpop-logo.png';
 import { CONTACT_EMAIL, EMAIL_URL, GENERAL_QUOTATION_URL } from '../../../config/contact';
+import { socialLinks } from '../../../config/social';
+import { navigationItems } from '../../../config/navigation';
 import './Footer.css';
 
 const coverageAreas = ['Gran Área Metropolitana (GAM)', 'Occidente', 'Pérez Zeledón'];

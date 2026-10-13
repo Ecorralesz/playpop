@@ -2,7 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { getQuotationUrl } from '../config/contact';
 import { businessRules } from '../data/businessRules';
-import { getPackageBySlug, getPackageFeatures, retiredPackageSlugs } from '../data/packages';
+import { getPackageBySlug } from '../data/packages';
 import { formatColones } from '../data/pricing';
 import { getGamesByTier, getProductsByIds } from '../data/products';
 import '../components/packages/PackageDetail/PackageDetail.css';
@@ -17,11 +17,7 @@ function PackageDetailPage() {
     return (
       <Container className="py-5">
         <h1>Paquete no encontrado</h1>
-        <p>
-          {retiredPackageSlugs.includes(slug)
-            ? 'Este paquete ya no forma parte del catálogo. Consulta nuestros paquetes actuales.'
-            : 'Consulta nuestros paquetes actuales con PlayPop.'}
-        </p>
+        <p>La información de este paquete está por confirmar.</p>
         <Link to="/paquetes">Volver a paquetes</Link>
       </Container>
     );
@@ -35,6 +31,7 @@ function PackageDetailPage() {
   const quoteUrl = getQuotationUrl({
     name: packageData.name,
     hours: packageData.rentalHours,
+    price: packageData.price,
     isPackage: true,
   });
 
@@ -69,7 +66,15 @@ function PackageDetailPage() {
               <div className="package-detail__inflatables">
                 {inflatables.map((product) => (
                   <article key={product.id}>
-                    <img src={product.image} alt={product.imageAlt} />
+                    <img
+                      className={
+                        product.imageFit === 'contain'
+                          ? 'package-detail__image--contain'
+                          : undefined
+                      }
+                      src={product.image}
+                      alt={product.imageAlt}
+                    />
                     <h3>
                       {product.name} {product.dimensions ? `· ${product.dimensions}` : ''}
                     </h3>
@@ -82,7 +87,7 @@ function PackageDetailPage() {
 
             <h2>Contenido del paquete</h2>
             <ul className="package-detail__features">
-              {getPackageFeatures(packageData).map((feature) => (
+              {packageData.features?.map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
               {snacks.map(({ product, quantity }) => (
@@ -100,26 +105,24 @@ function PackageDetailPage() {
               <h2>Opciones de juegos</h2>
               {packageData.requiresGameApproval ? (
                 <p>PlayPop debe aprobar un juego adecuado según la edad de los participantes.</p>
-              ) : packageData.standardGameCount == null ? (
-                <p>Selección y cantidades por confirmar con PlayPop.</p>
               ) : (
                 <>
-                  <h3>Estándar ({packageData.standardGameCount})</h3>
+                  <h3>
+                    {packageData.standardGameCount != null
+                      ? `Estándar (${packageData.standardGameCount})`
+                      : `Cortesía (${packageData.courtesyGameCount ?? 'Por confirmar'})`}
+                  </h3>
                   <p>
                     {getGamesByTier('standard')
                       .map(({ name }) => name)
                       .join(', ')}
                   </p>
-                  {packageData.premiumGameCount > 0 && (
-                    <>
-                      <h3>Premium ({packageData.premiumGameCount})</h3>
-                      <p>
-                        {getGamesByTier('premium')
-                          .map(({ name }) => name)
-                          .join(', ')}
-                      </p>
-                    </>
-                  )}
+                  <h3>Premium ({packageData.premiumGameCount ?? 'Por confirmar'})</h3>
+                  <p>
+                    {getGamesByTier('premium')
+                      .map(({ name }) => name)
+                      .join(', ')}
+                  </p>
                 </>
               )}
               <p>{businessRules.reservation.notice}</p>

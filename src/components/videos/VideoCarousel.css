@@ -1,0 +1,68 @@
+.video-carousel__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.video-carousel__navigation {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.video-carousel__navigation button {
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-primary-dark);
+  background: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+}
+
+.video-carousel__navigation button:disabled {
+  opacity: 0.45;
+}
+
+.video-carousel__track {
+  display: flex;
+  gap: var(--space-5);
+  overflow-x: auto;
+  padding: var(--space-2) var(--space-2) var(--space-5);
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--color-primary) var(--color-surface);
+}
+
+.video-carousel__item {
+  display: flex;
+  flex: 0 0 min(80%, 16rem);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.video-carousel__item .video-gallery-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.video-carousel__item .video-gallery-card__visual {
+  width: 100%;
+}
+
+.video-carousel__item .video-gallery-card__title {
+  flex: 1;
+}
+
+.video-carousel__navigation button:focus-visible,
+.video-carousel__track:focus-visible {
+  outline: 3px solid var(--color-primary-dark);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-carousel__track {
+    scroll-snap-type: none;
+  }
+}

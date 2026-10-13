@@ -4,6 +4,7 @@ import FeaturedPackages from '../components/home/FeaturedPackages/FeaturedPackag
 import WhyChoosePlayPop from '../components/home/WhyChoosePlayPop/WhyChoosePlayPop';
 import GalleryPreview from '../components/home/GalleryPreview/GalleryPreview';
 import FinalCTA from '../components/home/FinalCTA/FinalCTA';
+import VideoReels from '../components/home/VideoReels/VideoReels';
 
 function HomePage() {
   return (
@@ -13,6 +14,7 @@ function HomePage() {
       <FeaturedPackages />
       <WhyChoosePlayPop />
       <GalleryPreview />
+      <VideoReels />
       <FinalCTA />
     </>
   );

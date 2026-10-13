@@ -18,7 +18,7 @@ function FeaturedPackages() {
         />
 
         <Row className="g-4">
-          {featuredPackages.slice(0, 3).map((packageData) => (
+          {featuredPackages.map((packageData) => (
             <Col className="d-flex" key={packageData.id} md={6} lg={4}>
               <PackageCard packageData={packageData} />
             </Col>

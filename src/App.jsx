@@ -19,9 +19,9 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/inflables" element={<InflatablesPage />} />
+        <Route path="/juegos" element={<GamesPage />} />
         <Route path="/paquetes" element={<PackagesPage />} />
         <Route path="/paquetes/:slug" element={<PackageDetailPage />} />
-        <Route path="/juegos" element={<GamesPage />} />
         <Route path="/servicios" element={<ServicesPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/contacto" element={<ContactPage />} />

@@ -1,30 +1,21 @@
 import { getPublicEventCollections } from './eventCollections';
-import { getProductsByCategory } from './products';
+import { videos } from './videos';
 
 export const galleryCategories = [
   { id: 'all', label: 'Todos' },
-  { id: 'event', label: 'Eventos' },
-  { id: 'game', label: 'Juegos' },
-  { id: 'inflatable', label: 'Inflables' },
+  { id: 'photos', label: 'Fotos' },
+  { id: 'videos', label: 'Videos' },
 ];
 
-// Images are imported by the catalog through Vite. Future event photos can be
-// imported here and appended with id, image, category, imageAlt and caption.
-const equipmentItems = [
-  ...getProductsByCategory('inflatable'),
-  ...getProductsByCategory('game'),
-].map((product) => ({
-  id: product.id,
-  title: product.name,
-  image: product.image,
-  category: product.category,
-  imageAlt: product.imageAlt,
-  caption: null,
-}));
+const galleryItems = [
+  ...getPublicEventCollections(),
+  ...videos.map((video) => ({ ...video, category: 'video' })),
+];
 
-const galleryItems = [...getPublicEventCollections(), ...equipmentItems];
-
-export const getGalleryItemsByCategory = (category) =>
-  category === 'all' ? galleryItems : galleryItems.filter((item) => item.category === category);
+export const getGalleryItemsByCategory = (category) => {
+  if (category === 'photos') return galleryItems.filter((item) => item.category === 'event');
+  if (category === 'videos') return galleryItems.filter((item) => item.category === 'video');
+  return galleryItems;
+};
 
 export default galleryItems;

@@ -1,5 +1,5 @@
-import { pricing } from './pricing';
 import { generalInflatableRules } from './businessRules';
+import { pricing } from './pricing';
 import balloonPopImage from '../assets/images/playpop/game/Juego-dardos-bombas.jpeg';
 import cornholeImage from '../assets/images/playpop/game/Juego-lanza-bolsas-vs.jpeg';
 import dardosGigantesImage from '../assets/images/playpop/game/Juego-dardos-clasico.jpeg';
@@ -16,12 +16,13 @@ import babyGymImage from '../assets/images/playpop/inflatable/Baby-gym.png';
 
 const inflatable = (data) => ({
   category: 'inflatable',
-  rentalHours: pricing.standardRentalHours,
   installationIncluded: true,
+  rentalHours: pricing.standardRentalHours,
   featured: true,
   available: null,
   ...data,
   durationPrices: pricing.inflatables[data.id],
+  price: pricing.inflatables[data.id][pricing.standardRentalHours],
 });
 
 const game = (data) => ({
@@ -50,6 +51,7 @@ export const products = [
     id: 'baby-gym',
     slug: 'baby-gym',
     name: 'Baby Gym',
+    imageFit: 'contain',
     ageRestriction: '0 a 4 años',
     description:
       'Área de juego suave pensada para bebés y niños pequeños, con pelotas y superficies acolchadas para disfrutar en un espacio supervisado y apropiado para su edad.',

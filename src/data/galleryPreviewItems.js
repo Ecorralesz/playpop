@@ -1,4 +1,4 @@
-import galleryItems from './galleryItems';
+import { getGalleryItemsByCategory } from './galleryItems';
 
-// Keep equipment previews here; event collections open their viewer in /galeria.
-export default galleryItems.filter((item) => item.category !== 'event').slice(0, 6);
+// Reuse approved collection covers without duplicating photo records.
+export default getGalleryItemsByCategory('photos');

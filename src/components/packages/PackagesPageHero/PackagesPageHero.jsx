@@ -15,8 +15,8 @@ function PackagesPageHero() {
               Encuentra un paquete para tu evento
             </h1>
             <p className="packages-page-hero__description">
-              Elige un paquete de 3 horas con precio fijo o solicita una Feria PlayPop a medida. El
-              transporte se cotiza aparte; confirma disponibilidad con PlayPop.
+              Elige un paquete de 3 horas o solicita una Feria PlayPop a medida. El transporte se
+              cotiza aparte; confirma disponibilidad con PlayPop.
             </p>
             <div className="packages-page-hero__actions">
               <Button

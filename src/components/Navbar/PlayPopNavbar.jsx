@@ -1,9 +1,9 @@
-import { navigationItems } from '../../config/navigation';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import playPopLogo from '../../assets/images/playpop-logo.png';
 import { GENERAL_QUOTATION_URL } from '../../config/contact';
+import { navigationItems } from '../../config/navigation';
 import './PlayPopNavbar.css';
 
 function PlayPopNavbar() {

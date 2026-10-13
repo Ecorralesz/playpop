@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
-import { formatColones, gameTierLabels, getInflatablePrice } from '../../../data/pricing';
+import { formatColones, gameTierLabels } from '../../../data/pricing';
 import { getProductRoute } from '../../../data/products';
 
 import './ProductCard.css';
 
 function ProductCard({ product }) {
-  const { name, image, imageAlt, badge, price, rentalHours } = product;
+  const { name, image, imageAlt, price, rentalHours } = product;
 
   return (
-    <article className="product-card">
+    <article
+      className={`product-card${product.imageFit === 'contain' ? ' product-card--contain' : ''}`}
+    >
       <div className="product-card__media">
         {image ? (
           <img className="product-card__image" src={image} alt={imageAlt} loading="lazy" />
@@ -19,23 +21,16 @@ function ProductCard({ product }) {
             <i className="bi bi-image product-card__placeholder-icon" />
           </div>
         )}
-        {badge && <span className="product-card__badge">{badge}</span>}
       </div>
       <div className="product-card__body">
         <h3 className="product-card__name">{name}</h3>
         <p className="product-card__description">
-          <strong>
-            {product.category === 'inflatable'
-              ? `Desde ${formatColones(getInflatablePrice(product.id, 2))}`
-              : formatColones(price)}
-          </strong>
-          {product.category === 'inflatable'
-            ? ' / 2 horas'
-            : rentalHours
-              ? ` / ${rentalHours} horas`
-              : product.priceUnit
-                ? ` ${product.priceUnit}`
-                : ''}
+          <strong>{formatColones(price)}</strong>
+          {rentalHours
+            ? ` / ${rentalHours} horas`
+            : product.priceUnit
+              ? ` ${product.priceUnit}`
+              : ''}
         </p>
         {product.description && <p>{product.description}</p>}
         {product.tier && (
@@ -43,8 +38,10 @@ function ProductCard({ product }) {
             <strong>{gameTierLabels[product.tier]}</strong>
           </p>
         )}
-        {product.minimumQuantity && <p>Mínimo: {product.minimumQuantity} unidades.</p>}
-        {product.preparation && <p>{product.preparation}</p>}
+        {product.minimumQuantity && (
+          <p className="text-muted">Mínimo: {product.minimumQuantity} unidades.</p>
+        )}
+        {product.preparation && <p className="text-muted">{product.preparation}</p>}
         <Link
           className="product-card__link"
           to={getProductRoute(product)}

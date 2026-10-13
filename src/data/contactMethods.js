@@ -1,5 +1,5 @@
-import { socialLinks } from '../config/social';
 import { CONTACT_EMAIL, EMAIL_URL, GENERAL_QUOTATION_URL } from '../config/contact';
+import { socialLinks } from '../config/social';
 
 const contactMethods = [
   {
@@ -10,13 +10,13 @@ const contactMethods = [
     status: 'Disponible',
     href: GENERAL_QUOTATION_URL,
     external: true,
+    rel: 'noopener noreferrer',
   },
   ...socialLinks.map((social) => ({
     ...social,
     description: `Conoce más de PlayPop en ${social.name}.`,
     status: 'Visitar perfil',
     external: true,
-    rel: 'noopener noreferrer',
   })),
   {
     id: 'email',

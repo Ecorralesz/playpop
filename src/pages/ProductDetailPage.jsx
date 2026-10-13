@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useState } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { businessRules } from '../data/businessRules';
-import { formatColones, pricing, gameTierLabels, getInflatablePrice } from '../data/pricing';
+import { formatColones, gameTierLabels, getInflatablePrice, pricing } from '../data/pricing';
 import { getProductBySlug } from '../data/products';
 import { getQuotationUrl } from '../config/contact';
 import '../components/catalog/ProductDetail/ProductDetail.css';
@@ -11,7 +11,6 @@ const categoryNames = { inflatable: 'Inflable', game: 'Juego', snack: 'Snack' };
 function ProductDetailPage() {
   const { slug } = useParams();
   const { pathname } = useLocation();
-  const [selectedHours, setSelectedHours] = useState(pricing.standardRentalHours);
   const product = getProductBySlug(slug);
   if (product?.id === 'baby-gym' && pathname.startsWith('/juegos/'))
     return <Navigate to="/inflables/baby-gym" replace />;
@@ -32,17 +31,31 @@ function ProductDetailPage() {
         </Link>
       </Container>
     );
+  return <ProductDetails key={product.id} product={product} />;
+}
+
+function ProductDetails({ product }) {
+  const [selectedHours, setSelectedHours] = useState(pricing.standardRentalHours);
   const isInflatable = product.category === 'inflatable';
-  const quoteUrl = getQuotationUrl({
-    name: product.name,
-    hours: isInflatable ? selectedHours : product.rentalHours,
-  });
+  const selectedPrice = isInflatable
+    ? getInflatablePrice(product.id, selectedHours)
+    : product.price;
+  const duration = isInflatable ? selectedHours : product.rentalHours;
+  const extraHour =
+    product.category === 'game'
+      ? pricing.additionalHour[product.tier === 'standard' ? 'courtesy' : product.tier]
+      : null;
+  const quoteUrl = getQuotationUrl({ name: product.name, hours: duration, price: selectedPrice });
   return (
     <section className="product-detail">
       <Container>
         <Row className="g-5 align-items-start">
           <Col lg={6}>
-            <img className="product-detail__image" src={product.image} alt={product.imageAlt} />
+            <img
+              className={`product-detail__image${product.imageFit === 'contain' ? ' product-detail__image--contain' : ''}`}
+              src={product.image}
+              alt={product.imageAlt}
+            />
           </Col>
           <Col lg={6}>
             <p className="product-detail__eyebrow">
@@ -56,9 +69,9 @@ function ProductDetailPage() {
               </p>
             )}
             {isInflatable && (
-              <fieldset className="my-4">
+              <fieldset className="product-detail__duration">
                 <legend className="h2">Duración del alquiler</legend>
-                <p>3 horas es la duración estándar.</p>
+                <p>{pricing.standardRentalHours} horas es la duración estándar.</p>
                 <div className="d-flex flex-wrap gap-2">
                   {pricing.inflatableDurations.map((hours) => (
                     <button
@@ -75,23 +88,17 @@ function ProductDetailPage() {
                 </div>
               </fieldset>
             )}
-            <dl className="product-detail__facts">
+            <dl className="product-detail__facts" aria-live="polite" aria-atomic="true">
               <div className="product-detail__fact">
                 <dt>Precio</dt>
                 <dd>
-                  {formatColones(
-                    isInflatable ? getInflatablePrice(product.id, selectedHours) : product.price,
-                  )}
+                  {formatColones(selectedPrice)}
                   {product.priceUnit ? ` ${product.priceUnit}` : ''}
                 </dd>
               </div>
               <div className="product-detail__fact">
                 <dt>Duración</dt>
-                <dd>
-                  {product.rentalHours
-                    ? `${isInflatable ? selectedHours : product.rentalHours} horas`
-                    : 'No aplica'}
-                </dd>
+                <dd>{duration ? `${duration} horas` : 'No aplica'}</dd>
               </div>
               <div className="product-detail__fact">
                 <dt>Dimensiones</dt>
@@ -120,22 +127,26 @@ function ProductDetailPage() {
                 <li key={rule}>{rule}</li>
               ))}
             </ul>
-            {isInflatable && (
-              <>
-                <p>
-                  <strong>Después de 5 horas:</strong>{' '}
-                  {formatColones(pricing.additionalHour.inflatable)} por hora adicional por
-                  inflable. {businessRules.additionalTime}
-                </p>
-                <p>{businessRules.installation}</p>
-              </>
+            {extraHour && (
+              <p>
+                <strong>Hora adicional:</strong> +{formatColones(extraHour)}.{' '}
+                {businessRules.additionalTime}
+              </p>
             )}
-            <p>{businessRules.reservation.deposit}</p>
-            <p>{businessRules.reservation.balance}</p>
-            <p>{businessRules.reservation.notice}</p>
+            {isInflatable && (
+              <p>
+                <strong>Después de {pricing.additionalHour.afterHours} horas:</strong>{' '}
+                {formatColones(pricing.additionalHour.inflatable)} por hora adicional por inflable.{' '}
+                {businessRules.additionalTime}
+              </p>
+            )}
             <p>
               <i className="bi bi-truck" aria-hidden="true" /> {businessRules.transportation.notice}
             </p>
+            {isInflatable && product.installationIncluded && <p>{businessRules.installation}</p>}
+            <p>{businessRules.reservation.deposit}</p>
+            <p>{businessRules.reservation.balance}</p>
+            <p>Enviar un mensaje por WhatsApp no confirma disponibilidad ni reservación.</p>
             <a
               className="product-detail__whatsapp"
               href={quoteUrl}
