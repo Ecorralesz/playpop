@@ -13,7 +13,7 @@ function InflatablesGrid() {
         <SectionHeader
           eyebrow="Opciones para tu evento"
           title="Nuestro catálogo de inflables"
-          description="Explora nuestros inflables y consulta los precios y beneficios de cada opción."
+          description="Cuatro opciones con precios por duración de 2 a 5 horas. La duración estándar es de 3 horas; instalación y retiro incluidos."
           headingId="inflatables-grid-heading"
         />
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { formatColones } from '../../../data/pricing';
+import { formatColones, gameTierLabels } from '../../../data/pricing';
 import { getProductRoute } from '../../../data/products';
 
 import './ProductCard.css';
@@ -32,6 +32,12 @@ function ProductCard({ product }) {
               ? ` ${product.priceUnit}`
               : ''}
         </p>
+        {product.description && <p>{product.description}</p>}
+        {product.tier && (
+          <p>
+            <strong>{gameTierLabels[product.tier]}</strong>
+          </p>
+        )}
         {product.minimumQuantity && (
           <p className="text-muted">Mínimo: {product.minimumQuantity} unidades.</p>
         )}

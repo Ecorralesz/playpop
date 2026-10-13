@@ -1,6 +1,6 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import { WHATSAPP_URL } from '../config/contact';
+import { getQuotationUrl } from '../config/contact';
 import { businessRules } from '../data/businessRules';
 import { getPackageBySlug } from '../data/packages';
 import { formatColones } from '../data/pricing';
@@ -28,7 +28,12 @@ function PackageDetailPage() {
     ...snack,
     product: getProductsByIds([snack.productId])[0],
   }));
-  const quoteUrl = `${WHATSAPP_URL}?text=${encodeURIComponent(`Hola, deseo cotizar el paquete ${packageData.name}.`)}`;
+  const quoteUrl = getQuotationUrl({
+    name: packageData.name,
+    hours: packageData.rentalHours,
+    price: packageData.price,
+    isPackage: true,
+  });
 
   return (
     <section className="package-detail">
@@ -98,22 +103,29 @@ function PackageDetailPage() {
           <Col lg={5}>
             <aside className="package-detail__options">
               <h2>Opciones de juegos</h2>
-              <h3>
-                {packageData.standardGameCount != null
-                  ? `Estándar (${packageData.standardGameCount})`
-                  : `Cortesía (${packageData.courtesyGameCount ?? 'Por confirmar'})`}
-              </h3>
-              <p>
-                {getGamesByTier('standard')
-                  .map(({ name }) => name)
-                  .join(', ')}
-              </p>
-              <h3>Premium ({packageData.premiumGameCount ?? 'Por confirmar'})</h3>
-              <p>
-                {getGamesByTier('premium')
-                  .map(({ name }) => name)
-                  .join(', ')}
-              </p>
+              {packageData.requiresGameApproval ? (
+                <p>PlayPop debe aprobar un juego adecuado según la edad de los participantes.</p>
+              ) : (
+                <>
+                  <h3>
+                    {packageData.standardGameCount != null
+                      ? `Estándar (${packageData.standardGameCount})`
+                      : `Cortesía (${packageData.courtesyGameCount ?? 'Por confirmar'})`}
+                  </h3>
+                  <p>
+                    {getGamesByTier('standard')
+                      .map(({ name }) => name)
+                      .join(', ')}
+                  </p>
+                  <h3>Premium ({packageData.premiumGameCount ?? 'Por confirmar'})</h3>
+                  <p>
+                    {getGamesByTier('premium')
+                      .map(({ name }) => name)
+                      .join(', ')}
+                  </p>
+                </>
+              )}
+              <p>{businessRules.reservation.notice}</p>
               <p>
                 <i className="bi bi-truck" aria-hidden="true" />{' '}
                 {businessRules.transportation.notice}

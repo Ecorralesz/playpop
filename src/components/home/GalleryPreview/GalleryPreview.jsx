@@ -13,7 +13,7 @@ function GalleryPreview() {
         <SectionHeader
           eyebrow="Momentos llenos de diversión"
           title="Así se vive una celebración con PlayPop"
-          description="Explora una muestra de los espacios y experiencias que queremos crear para cada evento."
+          description="Explora fotografías reales de nuestros eventos y momentos para recordar."
           headingId="gallery-preview-heading"
         />
 

@@ -2,7 +2,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import playPopLogo from '../../../assets/images/playpop-logo.png';
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './Hero.css';
 
 const trustItems = [
@@ -33,7 +33,7 @@ function Hero() {
               <div className="hero__actions">
                 <Button
                   className="hero__primary-action"
-                  href={WHATSAPP_URL}
+                  href={GENERAL_QUOTATION_URL}
                   rel="noreferrer"
                   target="_blank"
                   variant="success"

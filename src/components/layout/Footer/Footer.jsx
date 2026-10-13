@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import playPopLogo from '../../../assets/images/playpop-logo.png';
-import { CONTACT_EMAIL, EMAIL_URL, WHATSAPP_URL } from '../../../config/contact';
+import { CONTACT_EMAIL, EMAIL_URL, GENERAL_QUOTATION_URL } from '../../../config/contact';
 import { socialLinks } from '../../../config/social';
 import { navigationItems } from '../../../config/navigation';
 import './Footer.css';
@@ -60,7 +60,7 @@ function Footer() {
             </h2>
             <a
               className="playpop-footer__whatsapp"
-              href={WHATSAPP_URL}
+              href={GENERAL_QUOTATION_URL}
               rel="noreferrer"
               target="_blank"
             >

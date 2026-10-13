@@ -100,9 +100,12 @@
   flex: 1;
   flex-direction: column;
   padding: var(--space-5);
+  overflow-wrap: anywhere;
 }
 
 .product-card__name {
+  min-height: 2.4em;
+  line-height: var(--line-height-heading);
   margin-bottom: var(--space-3);
   color: var(--color-text);
   font-size: var(--font-size-lg);
@@ -110,6 +113,7 @@
 }
 
 .product-card__description {
+  min-height: 3em;
   margin-bottom: var(--space-5);
   color: var(--color-text-muted);
 }
@@ -142,7 +146,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .product-card,
-  .product-card__image,
   .product-card__link .bi {
     transition: none;
   }

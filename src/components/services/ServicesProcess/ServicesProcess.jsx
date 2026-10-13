@@ -14,7 +14,7 @@ const steps = [
     id: 'options',
     icon: 'bi-stars',
     title: 'Elige opciones',
-    description: 'Elige palomitas de maíz o algodón de azúcar e indica la cantidad deseada.',
+    description: 'Elige palomitas de maíz o algodón de azúcar y la cantidad de unidades.',
   },
   {
     id: 'quotation',

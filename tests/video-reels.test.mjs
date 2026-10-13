@@ -418,7 +418,7 @@ test('existing SPA hosting fallback supports refreshed catalog URLs', async () =
 });
 
 test('official contact configuration and methods use single approved email, social URLs and WhatsApp number', async () => {
-  const { CONTACT_EMAIL, EMAIL_URL, WHATSAPP_URL } =
+  const { CONTACT_EMAIL, EMAIL_URL, WHATSAPP_URL, GENERAL_QUOTATION_URL } =
     await server.ssrLoadModule('/src/config/contact.js');
   const { socialLinks } = await server.ssrLoadModule('/src/config/social.js');
   const { default: methods } = await server.ssrLoadModule('/src/data/contactMethods.js');
@@ -437,7 +437,10 @@ test('official contact configuration and methods use single approved email, soci
     ['whatsapp', 'instagram', 'facebook', 'email'],
   );
   assert.equal(methods.find(({ id }) => id === 'email').href, EMAIL_URL);
-  assert.equal(methods.find(({ id }) => id === 'whatsapp').href, WHATSAPP_URL);
+  assert.equal(methods.find(({ id }) => id === 'whatsapp').href, GENERAL_QUOTATION_URL);
+  const quotation = new URL(GENERAL_QUOTATION_URL);
+  assert.equal(`${quotation.origin}${quotation.pathname}`, WHATSAPP_URL);
+  assert.match(quotation.searchParams.get('text'), /Fecha del evento:|Ubicación del evento:/);
   for (const social of socialLinks)
     assert.equal(methods.find(({ id }) => id === social.id).href, social.href);
 });
@@ -505,4 +508,38 @@ test('dedicated package game inclusions and quoted package prices remain intact'
   assert.equal(experience.courtesyGameCount, 2);
   assert.equal(experience.price, 90000);
   assert.ok(experience.features.includes('2 juegos de cortesía'));
+});
+
+test('merge preserves the customized navbar order and declares Juegos once', async () => {
+  const { navigationItems } = await server.ssrLoadModule('/src/config/navigation.js');
+  assert.deepEqual(
+    navigationItems.map(({ label }) => label),
+    ['Inicio', 'Inflables', 'Juegos', 'Servicios', 'Paquetes', 'Galería', 'Contacto'],
+  );
+  const { default: App } = await server.ssrLoadModule('/src/App.jsx');
+  const paths = [];
+  const visit = (element) => {
+    if (!React.isValidElement(element)) return;
+    if (element.props.path) paths.push(element.props.path);
+    React.Children.forEach(element.props.children, visit);
+  };
+  visit(App());
+  assert.equal(paths.filter((path) => path === '/juegos').length, 1);
+  assert.equal(new Set(paths).size, paths.length);
+});
+
+test('merge keeps the feature package catalog and its prices rather than silently repricing or retiring it', async () => {
+  const { packages } = await server.ssrLoadModule('/src/data/packages.js');
+  assert.deepEqual(
+    packages.map(({ id, price }) => [id, price]),
+    [
+      ['baby-pop', 40000],
+      ['super-pop', 70000],
+      ['playpop-experience', 90000],
+      ['doble-diversion', null],
+      ['fiesta-deportiva', null],
+      ['feria-playpop', null],
+    ],
+  );
+  assert.equal(packages.find(({ id }) => id === 'super-pop').premiumGameCount, 2);
 });

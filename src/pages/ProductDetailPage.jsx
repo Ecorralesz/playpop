@@ -1,6 +1,6 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { businessRules } from '../data/businessRules';
 import { formatColones, gameTierLabels, getInflatablePrice, pricing } from '../data/pricing';
 import { getProductBySlug } from '../data/products';
@@ -10,12 +10,25 @@ import '../components/catalog/ProductDetail/ProductDetail.css';
 const categoryNames = { inflatable: 'Inflable', game: 'Juego', snack: 'Snack' };
 function ProductDetailPage() {
   const { slug } = useParams();
+  const { pathname } = useLocation();
   const product = getProductBySlug(slug);
+  if (product?.id === 'baby-gym' && pathname.startsWith('/juegos/'))
+    return <Navigate to="/inflables/baby-gym" replace />;
   if (!product)
     return (
       <Container className="py-5">
         <h1>Producto no encontrado</h1>
-        <Link to="/servicios">Volver al catálogo</Link>
+        <Link
+          to={
+            pathname.startsWith('/inflables/')
+              ? '/inflables'
+              : pathname.startsWith('/juegos/')
+                ? '/juegos'
+                : '/servicios'
+          }
+        >
+          Volver al catálogo
+        </Link>
       </Container>
     );
   return <ProductDetails key={product.id} product={product} />;
@@ -130,6 +143,9 @@ function ProductDetails({ product }) {
             <p>
               <i className="bi bi-truck" aria-hidden="true" /> {businessRules.transportation.notice}
             </p>
+            {isInflatable && product.installationIncluded && <p>{businessRules.installation}</p>}
+            <p>{businessRules.reservation.deposit}</p>
+            <p>{businessRules.reservation.balance}</p>
             <p>Enviar un mensaje por WhatsApp no confirma disponibilidad ni reservación.</p>
             <a
               className="product-detail__whatsapp"

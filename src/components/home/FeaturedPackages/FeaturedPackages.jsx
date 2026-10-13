@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import PackageCard from '../../common/PackageCard/PackageCard';
@@ -23,6 +24,9 @@ function FeaturedPackages() {
             </Col>
           ))}
         </Row>
+        <Link className="btn btn-outline-primary mt-4" to="/paquetes">
+          Ver todos los paquetes
+        </Link>
       </Container>
     </section>
   );

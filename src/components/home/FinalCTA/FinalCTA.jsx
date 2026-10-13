@@ -1,7 +1,7 @@
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './FinalCTA.css';
 
 const trustItems = [
@@ -29,7 +29,7 @@ function FinalCTA() {
               <div className="final-cta__actions">
                 <Button
                   className="final-cta__primary-action"
-                  href={WHATSAPP_URL}
+                  href={GENERAL_QUOTATION_URL}
                   rel="noreferrer"
                   target="_blank"
                   variant="light"

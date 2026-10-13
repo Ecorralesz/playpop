@@ -2,16 +2,19 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import ProductCard from '../../common/ProductCard/ProductCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
-import { products } from '../../../data/products';
+import { getProductsByCategory } from '../../../data/products';
 import './FeaturedInflatables.css';
 
 function FeaturedInflatables() {
+  const inflatables = getProductsByCategory('inflatable');
   const featuredInflatables = [
     'inflable-con-tobogan',
     'castillo-inflable',
     'inflable-deportivo-3-en-1',
     'baby-gym',
-  ].map((slug) => products.find((product) => product.slug === slug));
+  ]
+    .map((slug) => inflatables.find((product) => product.slug === slug))
+    .filter(Boolean);
   return (
     <section className="featured-inflatables" aria-labelledby="featured-inflatables-heading">
       <Container className="featured-inflatables__container">

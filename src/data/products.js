@@ -16,6 +16,7 @@ import babyGymImage from '../assets/images/playpop/inflatable/Baby-gym.png';
 
 const inflatable = (data) => ({
   category: 'inflatable',
+  installationIncluded: true,
   rentalHours: pricing.standardRentalHours,
   featured: true,
   available: null,
@@ -26,12 +27,12 @@ const inflatable = (data) => ({
 
 const game = (data) => ({
   category: 'game',
-  rentalHours: 3,
+  rentalHours: pricing.standardRentalHours,
   dimensions: null,
   featured: false,
   available: null,
   ...data,
-  price: pricing.standaloneGames[data.id],
+  price: pricing.standaloneGames[data.id] ?? null,
 });
 
 const snack = (data) => ({
@@ -67,6 +68,7 @@ export const products = [
   }),
   game({
     id: 'dardos-gigantes',
+    description: 'Lanza al objetivo en un juego de puntería por turnos.',
     slug: 'dardos-gigantes',
     name: 'Dardos',
     tier: 'standard',
@@ -83,6 +85,7 @@ export const products = [
   }),
   game({
     id: 'tumba-latas',
+    description: 'Pon a prueba tu puntería derribando las latas.',
     slug: 'tumba-latas',
     name: 'Tumba Latas',
     tier: 'standard',
@@ -95,6 +98,7 @@ export const products = [
   }),
   game({
     id: 'football-toss',
+    description: 'Lanza el balón hacia las aperturas del objetivo.',
     slug: 'football-toss',
     name: 'Football Toss',
     tier: 'premium',
@@ -107,6 +111,7 @@ export const products = [
   }),
   game({
     id: 'mini-golf',
+    description: 'Disfruta una partida de Mini Golf por turnos.',
     slug: 'mini-golf',
     name: 'Mini Golf',
     tier: 'premium',
@@ -131,6 +136,7 @@ export const products = [
   }),
   game({
     id: 'cornhole',
+    description: 'Lanza los sacos hacia los orificios de puntuación.',
     slug: 'lanzamiento-de-sacos-cornhole',
     name: 'Lanzamiento de Sacos / Cornhole',
     tier: 'standard',
@@ -158,7 +164,7 @@ export const products = [
     id: 'inflable-deportivo-3-en-1',
     slug: 'inflable-deportivo-3-en-1',
     name: 'Inflable Deportivo 3 en 1',
-    dimensions: 'Por confirmar',
+    dimensions: null,
     ageRestriction: '5+',
     rules: [
       'Tres áreas de actividad. Los participantes deben rotar entre las actividades.',
@@ -169,6 +175,7 @@ export const products = [
   }),
   game({
     id: 'balloon-pop',
+    description: 'Un juego de puntería con globos como objetivo.',
     slug: 'balloon-pop',
     name: 'Balloon Pop',
     tier: 'premium',
@@ -203,6 +210,7 @@ export const products = [
   }),
   game({
     id: 'lanzamiento-aros',
+    description: 'Lanza los aros hacia los objetivos.',
     slug: 'lanzamiento-de-aros',
     name: 'Lanzamiento de Aros',
     tier: 'standard',

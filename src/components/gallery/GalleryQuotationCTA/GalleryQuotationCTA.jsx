@@ -1,6 +1,6 @@
 import { Button, Container } from 'react-bootstrap';
 
-import { WHATSAPP_URL } from '../../../config/contact';
+import { GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './GalleryQuotationCTA.css';
 
 function GalleryQuotationCTA() {
@@ -15,7 +15,7 @@ function GalleryQuotationCTA() {
             Escríbenos por WhatsApp y cuéntanos qué tipo de celebración estás organizando para
             ayudarte a revisar las opciones disponibles.
           </p>
-          <Button href={WHATSAPP_URL} rel="noreferrer" target="_blank" variant="light">
+          <Button href={GENERAL_QUOTATION_URL} rel="noreferrer" target="_blank" variant="light">
             <i className="bi bi-whatsapp" aria-hidden="true" />
             Cotizar por WhatsApp
             <span className="visually-hidden"> (abre en una nueva pestaña)</span>

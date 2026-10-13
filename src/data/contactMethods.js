@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, EMAIL_URL, WHATSAPP_URL } from '../config/contact';
+import { CONTACT_EMAIL, EMAIL_URL, GENERAL_QUOTATION_URL } from '../config/contact';
 import { socialLinks } from '../config/social';
 
 const contactMethods = [
@@ -8,8 +8,9 @@ const contactMethods = [
     description: 'Solicita información y una cotización directamente con nuestro equipo.',
     icon: 'bi-whatsapp',
     status: 'Disponible',
-    href: WHATSAPP_URL,
+    href: GENERAL_QUOTATION_URL,
     external: true,
+    rel: 'noopener noreferrer',
   },
   ...socialLinks.map((social) => ({
     ...social,

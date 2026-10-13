@@ -8,9 +8,11 @@ export const EMAIL_URL = `mailto:${CONTACT_EMAIL}`;
 export const getQuotationUrl = ({ name, hours, price, isPackage = false } = {}) => {
   const amount = price == null ? null : formatColones(price);
   const message = [
-    `Hola, me gustaría cotizar ${isPackage ? 'el paquete' : 'el'} ${name ?? 'evento'} de PlayPop.`,
+    name
+      ? `Hola, me gustaría cotizar ${isPackage ? 'el paquete' : 'el'} ${name} de PlayPop.`
+      : 'Hola, me gustaría cotizar un evento con PlayPop.',
     '',
-    `${isPackage ? 'Paquete' : 'Producto'}: ${name ?? 'Por confirmar'}`,
+    name ? `${isPackage ? 'Paquete' : 'Producto'}: ${name}` : null,
     hours ? `Duración seleccionada: ${hours} horas` : null,
     amount ? `Precio de referencia: ${amount}` : null,
     '',
@@ -24,3 +26,5 @@ export const getQuotationUrl = ({ name, hours, price, isPackage = false } = {}) 
     .join('\n');
   return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
 };
+
+export const GENERAL_QUOTATION_URL = getQuotationUrl();
