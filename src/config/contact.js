@@ -1,4 +1,6 @@
 export const WHATSAPP_URL = 'https://wa.me/50663892727';
+export const CONTACT_EMAIL = 'playpop.cr@gmail.com';
+export const EMAIL_URL = `mailto:${CONTACT_EMAIL}`;
 
 export const getQuotationUrl = ({ name, hours, isPackage = false } = {}) => {
   const selection = name ? `${isPackage ? 'el paquete ' : ''}${name}` : 'un evento con PlayPop';

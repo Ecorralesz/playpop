@@ -4,7 +4,9 @@ function GalleryCard({ item, onOpen }) {
   const { title, image, imageAlt, badge, caption, description, photos } = item;
 
   return (
-    <article className="gallery-card">
+    <article
+      className={`gallery-card${item.category === 'game' || item.category === 'inflatable' ? ' gallery-card--artwork' : ''}`}
+    >
       <div className="gallery-card__visual">
         {image ? (
           <img className="gallery-card__image" src={image} alt={imageAlt} loading="lazy" />

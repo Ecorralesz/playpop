@@ -3,10 +3,8 @@ import { navigationItems } from '../../../config/navigation';
 import { Link } from 'react-router-dom';
 
 import playPopLogo from '../../../assets/images/playpop-logo.png';
-import { GENERAL_QUOTATION_URL } from '../../../config/contact';
+import { CONTACT_EMAIL, EMAIL_URL, GENERAL_QUOTATION_URL } from '../../../config/contact';
 import './Footer.css';
-
-const pendingContactItems = ['Correo electrónico'];
 
 const coverageAreas = ['Gran Área Metropolitana (GAM)', 'Occidente', 'Pérez Zeledón'];
 
@@ -86,12 +84,12 @@ function Footer() {
                   </a>
                 </li>
               ))}
-              {pendingContactItems.map((item) => (
-                <li className="playpop-footer__pending-item" key={item}>
-                  <span>{item}</span>
-                  <span className="playpop-footer__status">Pendiente</span>
-                </li>
-              ))}
+              <li className="playpop-footer__pending-item">
+                <a className="playpop-footer__link" href={EMAIL_URL}>
+                  <i className="bi bi-envelope me-2" aria-hidden="true" />
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
             </ul>
           </section>
 

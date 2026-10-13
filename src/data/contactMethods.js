@@ -1,5 +1,5 @@
 import { socialLinks } from '../config/social';
-import { GENERAL_QUOTATION_URL } from '../config/contact';
+import { CONTACT_EMAIL, EMAIL_URL, GENERAL_QUOTATION_URL } from '../config/contact';
 
 const contactMethods = [
   {
@@ -21,10 +21,10 @@ const contactMethods = [
   {
     id: 'email',
     name: 'Correo electrónico',
-    description: 'Este canal todavía no está disponible para recibir solicitudes.',
+    description: CONTACT_EMAIL,
     icon: 'bi-envelope',
-    status: 'Pendiente',
-    href: null,
+    status: 'Enviar correo',
+    href: EMAIL_URL,
     external: false,
   },
 ];

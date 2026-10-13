@@ -1,3 +1,6 @@
+import unforgettableCover from '../assets/images/playpop/events/cumple de sara /Salón de fiestas infantil colorido y vacío.png';
+import unforgettableOne from '../assets/images/playpop/events/cumple de sara /WhatsApp Image 2026-10-12 at 7.55.08 PM.jpeg';
+import unforgettableTwo from '../assets/images/playpop/events/cumple de sara /WhatsApp Image 2026-10-12 at 7.55.08 PM (2).jpeg';
 import celebrationOne from '../assets/images/playpop/events/cumple zoe/WhatsApp Image 2026-08-15 at 12.24.01 PM.jpeg';
 import celebrationTwo from '../assets/images/playpop/events/cumple zoe/WhatsApp Image 2026-08-15 at 12.24.05 PM.jpeg';
 import funOne from '../assets/images/playpop/events/escuela de chris /Feria infantil bajo un cielo dramático.png';
@@ -8,7 +11,7 @@ import momentThree from '../assets/images/playpop/events/jared b-day/WhatsApp Im
 import momentFour from '../assets/images/playpop/events/jared b-day/WhatsApp Image 2026-10-12 at 7.55.05 PM (3).jpeg';
 import celebrationCover from '../assets/images/playpop/events/cumple zoe/WhatsApp Image 2026-08-15 at 12.24.08 PM.jpeg';
 
-// The business owner confirmed publication permission for all nine current
+// The business owner confirmed publication permission for all twelve current
 // photographs, including those featuring people and children.
 // Import only cleared images. Pending records have no asset import, so their
 // photographs cannot be accidentally emitted in a public production build.
@@ -106,6 +109,38 @@ export const eventCollections = [
         imageAlt: 'Participantes compartiendo momentos junto al inflable de PlayPop',
         width: 1600,
         height: 1200,
+        publication: 'cleared',
+      },
+    ],
+  },
+  {
+    id: 'celebraciones-inolvidables',
+    title: 'Celebraciones inolvidables',
+    description: 'Momentos especiales que se convierten en recuerdos para siempre.',
+    category: 'event',
+    photos: [
+      {
+        id: 'inolvidables-01',
+        image: unforgettableCover,
+        imageAlt: 'Espacio de celebración con inflable, pelotas y juegos de PlayPop',
+        width: 1086,
+        height: 1448,
+        publication: 'cleared',
+      },
+      {
+        id: 'inolvidables-02',
+        image: unforgettableOne,
+        imageAlt: 'Castillo inflable multicolor de PlayPop listo para jugar',
+        width: 1086,
+        height: 1448,
+        publication: 'cleared',
+      },
+      {
+        id: 'inolvidables-03',
+        image: unforgettableTwo,
+        imageAlt: 'Área de pelotas de colores junto a los juegos de PlayPop',
+        width: 1142,
+        height: 1378,
         publication: 'cleared',
       },
     ],
