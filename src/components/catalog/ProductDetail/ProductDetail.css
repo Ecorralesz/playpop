@@ -3,8 +3,11 @@
 }
 .product-detail__image {
   width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   max-height: 34rem;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--color-surface);
   border-radius: var(--radius-lg);
 }
 .product-detail__eyebrow {

@@ -12,7 +12,7 @@ import inflableToboganImage from '../assets/images/playpop/inflatable/Castillo 5
 import inflableDeportivoImage from '../assets/images/playpop/inflatable/Inflable 3en1.jpeg';
 import algodonAzucarImage from '../assets/images/playpop/snack/Maquina-algodon.jpeg';
 import palomitasMaizImage from '../assets/images/playpop/snack/Maquina-palomitas.jpeg';
-import babyGymImage from '../assets/images/playpop/inflatable/Baby-gym.jpeg';
+import babyGymImage from '../assets/images/playpop/inflatable/Baby-gym.png';
 
 const inflatable = (data) => ({
   category: 'inflatable',
