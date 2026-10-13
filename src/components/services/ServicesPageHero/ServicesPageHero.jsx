@@ -10,13 +10,13 @@ function ServicesPageHero() {
       <Container className="services-page-hero__container">
         <Row className="align-items-center gy-4">
           <Col lg={8}>
-            <p className="services-page-hero__eyebrow">Más diversión para tu celebración</p>
+            <p className="services-page-hero__eyebrow">Un detalle delicioso para tu celebración</p>
             <h1 className="services-page-hero__heading" id="services-page-heading">
               Servicios para complementar tu evento
             </h1>
             <p className="services-page-hero__description">
-              Explora opciones preliminares de juegos, snacks y experiencias estilo carnaval para
-              acompañar tu celebración.
+              Palomitas de maíz preparadas en el evento y algodón de azúcar preparado y empacado
+              previamente. Consulta las cantidades para tu celebración.
             </p>
             <div className="services-page-hero__actions">
               <Button href={WHATSAPP_URL} rel="noreferrer" target="_blank" variant="success">

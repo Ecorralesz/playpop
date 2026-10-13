@@ -9,8 +9,8 @@ function GalleryNotice() {
         <div className="gallery-notice__content">
           <i className="bi bi-info-circle" aria-hidden="true" />
           <p>
-            Las imágenes actuales son ilustrativas. Próximamente incorporaremos fotografías reales
-            de eventos y experiencias de PlayPop.
+            Fotografías y videos reales de momentos PlayPop. Explora las colecciones para ver más
+            recuerdos.
           </p>
         </div>
       </Container>

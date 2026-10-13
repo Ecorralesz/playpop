@@ -3,16 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import playPopLogo from '../../assets/images/playpop-logo.png';
 import { WHATSAPP_URL } from '../../config/contact';
+import { navigationItems } from '../../config/navigation';
 import './PlayPopNavbar.css';
-
-const navigationItems = [
-  { label: 'Inicio', to: '/', end: true },
-  { label: 'Inflables', to: '/inflables' },
-  { label: 'Paquetes', to: '/paquetes' },
-  { label: 'Servicios', to: '/servicios' },
-  { label: 'Galería', to: '/galeria' },
-  { label: 'Contacto', to: '/contacto' },
-];
 
 function PlayPopNavbar() {
   return (

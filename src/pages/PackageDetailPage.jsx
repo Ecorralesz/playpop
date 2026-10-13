@@ -61,7 +61,15 @@ function PackageDetailPage() {
               <div className="package-detail__inflatables">
                 {inflatables.map((product) => (
                   <article key={product.id}>
-                    <img src={product.image} alt={product.imageAlt} />
+                    <img
+                      className={
+                        product.imageFit === 'contain'
+                          ? 'package-detail__image--contain'
+                          : undefined
+                      }
+                      src={product.image}
+                      alt={product.imageAlt}
+                    />
                     <h3>
                       {product.name} {product.dimensions ? `· ${product.dimensions}` : ''}
                     </h3>
@@ -90,9 +98,13 @@ function PackageDetailPage() {
           <Col lg={5}>
             <aside className="package-detail__options">
               <h2>Opciones de juegos</h2>
-              <h3>Cortesía ({packageData.courtesyGameCount ?? 'Por confirmar'})</h3>
+              <h3>
+                {packageData.standardGameCount != null
+                  ? `Estándar (${packageData.standardGameCount})`
+                  : `Cortesía (${packageData.courtesyGameCount ?? 'Por confirmar'})`}
+              </h3>
               <p>
-                {getGamesByTier('courtesy')
+                {getGamesByTier('standard')
                   .map(({ name }) => name)
                   .join(', ')}
               </p>

@@ -34,7 +34,7 @@ function PackagesGrid() {
           <SectionHeader
             eyebrow="Alquiler estándar"
             title="Ofertas de inflables"
-            description="Cada inflable conserva su precio normal y los juegos de cortesía indicados."
+            description="Consulta las duraciones y precios del alquiler individual."
             headingId="inflatable-offers-heading"
           />
         </div>

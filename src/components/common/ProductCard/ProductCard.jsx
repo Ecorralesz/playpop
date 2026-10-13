@@ -5,10 +5,12 @@ import { getProductRoute } from '../../../data/products';
 import './ProductCard.css';
 
 function ProductCard({ product }) {
-  const { name, image, imageAlt, badge, price, rentalHours, courtesyGameCount } = product;
+  const { name, image, imageAlt, price, rentalHours } = product;
 
   return (
-    <article className="product-card">
+    <article
+      className={`product-card${product.imageFit === 'contain' ? ' product-card--contain' : ''}`}
+    >
       <div className="product-card__media">
         {image ? (
           <img className="product-card__image" src={image} alt={imageAlt} loading="lazy" />
@@ -19,7 +21,6 @@ function ProductCard({ product }) {
             <i className="bi bi-image product-card__placeholder-icon" />
           </div>
         )}
-        {badge && <span className="product-card__badge">{badge}</span>}
       </div>
       <div className="product-card__body">
         <h3 className="product-card__name">{name}</h3>
@@ -30,10 +31,11 @@ function ProductCard({ product }) {
             : product.priceUnit
               ? ` ${product.priceUnit}`
               : ''}
-          {courtesyGameCount
-            ? ` · Incluye ${courtesyGameCount} ${courtesyGameCount === 1 ? 'juego' : 'juegos'} de cortesía`
-            : ''}
         </p>
+        {product.minimumQuantity && (
+          <p className="text-muted">Mínimo: {product.minimumQuantity} unidades.</p>
+        )}
+        {product.preparation && <p className="text-muted">{product.preparation}</p>}
         <Link
           className="product-card__link"
           to={getProductRoute(product)}

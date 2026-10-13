@@ -14,7 +14,7 @@ const steps = [
     id: 'options',
     icon: 'bi-stars',
     title: 'Elige opciones',
-    description: 'Revisa los servicios preliminares que podrían acompañar tu evento.',
+    description: 'Elige palomitas de maíz o algodón de azúcar e indica la cantidad deseada.',
   },
   {
     id: 'quotation',

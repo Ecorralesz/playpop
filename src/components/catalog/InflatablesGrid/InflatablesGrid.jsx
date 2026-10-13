@@ -13,7 +13,7 @@ function InflatablesGrid() {
         <SectionHeader
           eyebrow="Opciones para tu evento"
           title="Nuestro catálogo de inflables"
-          description="Tres opciones reales para disfrutar durante 3 horas, con beneficios de juegos de cortesía."
+          description="Explora nuestros inflables y consulta los precios y beneficios de cada opción."
           headingId="inflatables-grid-heading"
         />
 

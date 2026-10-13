@@ -10,6 +10,7 @@ function FeaturedInflatables() {
     'inflable-con-tobogan',
     'castillo-inflable',
     'inflable-deportivo-3-en-1',
+    'baby-gym',
   ].map((slug) => products.find((product) => product.slug === slug));
   return (
     <section className="featured-inflatables" aria-labelledby="featured-inflatables-heading">

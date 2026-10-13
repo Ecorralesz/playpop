@@ -1,67 +1,21 @@
-const galleryItems = [
-  {
-    id: 'celebracion-infantil',
-    title: 'Celebración infantil',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'diversion-en-familia',
-    title: 'Diversión en familia',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'fiesta-llena-de-color',
-    title: 'Fiesta llena de color',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'momento-de-juegos',
-    title: 'Momento de juegos',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'evento-especial',
-    title: 'Evento especial',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'experiencia-playpop',
-    title: 'Experiencia PlayPop',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'celebracion-al-aire-libre',
-    title: 'Celebración al aire libre',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'dia-de-diversion',
-    title: 'Día de diversión',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
-  {
-    id: 'espacio-para-compartir',
-    title: 'Espacio para compartir',
-    image: null,
-    imageAlt: '',
-    badge: 'Imagen ilustrativa',
-  },
+import { getPublicEventCollections } from './eventCollections';
+import { videos } from './videos';
+
+export const galleryCategories = [
+  { id: 'all', label: 'Todos' },
+  { id: 'photos', label: 'Fotos' },
+  { id: 'videos', label: 'Videos' },
 ];
+
+const galleryItems = [
+  ...getPublicEventCollections(),
+  ...videos.map((video) => ({ ...video, category: 'video' })),
+];
+
+export const getGalleryItemsByCategory = (category) => {
+  if (category === 'photos') return galleryItems.filter((item) => item.category === 'event');
+  if (category === 'videos') return galleryItems.filter((item) => item.category === 'video');
+  return galleryItems;
+};
 
 export default galleryItems;

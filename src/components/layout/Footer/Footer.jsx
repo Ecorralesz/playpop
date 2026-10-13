@@ -1,19 +1,10 @@
 import { Link } from 'react-router-dom';
 
 import playPopLogo from '../../../assets/images/playpop-logo.png';
-import { WHATSAPP_URL } from '../../../config/contact';
+import { CONTACT_EMAIL, EMAIL_URL, WHATSAPP_URL } from '../../../config/contact';
+import { socialLinks } from '../../../config/social';
+import { navigationItems } from '../../../config/navigation';
 import './Footer.css';
-
-const navigationItems = [
-  { label: 'Inicio', to: '/' },
-  { label: 'Inflables', to: '/inflables' },
-  { label: 'Paquetes', to: '/paquetes' },
-  { label: 'Servicios', to: '/servicios' },
-  { label: 'Galería', to: '/galeria' },
-  { label: 'Contacto', to: '/contacto' },
-];
-
-const pendingContactItems = ['Instagram', 'Facebook', 'Correo electrónico'];
 
 const coverageAreas = ['Gran Área Metropolitana (GAM)', 'Occidente', 'Pérez Zeledón'];
 
@@ -78,12 +69,27 @@ function Footer() {
               <span className="visually-hidden"> (abre en una nueva pestaña)</span>
             </a>
             <ul className="playpop-footer__list playpop-footer__pending-list">
-              {pendingContactItems.map((item) => (
-                <li className="playpop-footer__pending-item" key={item}>
-                  <span>{item}</span>
-                  <span className="playpop-footer__status">Pendiente</span>
+              {socialLinks.map(({ id, name, icon, href, ariaLabel }) => (
+                <li className="playpop-footer__pending-item" key={id}>
+                  <a
+                    className="playpop-footer__link"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={ariaLabel}
+                  >
+                    <i className={`bi ${icon} me-2`} aria-hidden="true" />
+                    {name}
+                    <span className="visually-hidden"> (abre en una nueva pestaña)</span>
+                  </a>
                 </li>
               ))}
+              <li className="playpop-footer__pending-item">
+                <a className="playpop-footer__link" href={EMAIL_URL}>
+                  <i className="bi bi-envelope me-2" aria-hidden="true" />
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
             </ul>
           </section>
 

@@ -15,8 +15,7 @@ function GalleryPageHero() {
               Inspírate para tu próxima celebración
             </h1>
             <p className="gallery-page-hero__description">
-              Explora una muestra ilustrativa de los espacios, colores y experiencias que queremos
-              crear en cada evento.
+              Explora fotografías y videos reales de nuestros eventos, inflables y juegos.
             </p>
             <div className="gallery-page-hero__actions">
               <Button href={WHATSAPP_URL} rel="noreferrer" target="_blank" variant="success">

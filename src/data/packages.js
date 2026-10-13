@@ -2,6 +2,25 @@ import { getProductsByIds } from './products';
 
 export const packages = [
   {
+    id: 'baby-pop',
+    slug: 'baby-pop',
+    name: 'Baby Pop',
+    price: 40000,
+    inflatableIds: ['baby-gym'],
+    standardGameCount: 1,
+    premiumGameCount: 0,
+    rentalHours: 3,
+    badge: 'Un inflable',
+    shortDescription: 'Baby Pop: inflables y juegos para tu celebración.',
+    installationIncluded: true,
+    snacks: [],
+    requiresGameApproval: true,
+    features: ['1 juego estándar (selección con aprobación de PlayPop)', 'Instalación y retiro'],
+    details: [
+      'La selección del juego estándar requiere aprobación de PlayPop según la edad de los participantes. No se ha confirmado su adecuación para bebés.',
+    ],
+  },
+  {
     id: 'super-pop',
     name: 'Super Pop',
     slug: 'super-pop',

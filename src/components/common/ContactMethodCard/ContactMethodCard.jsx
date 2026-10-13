@@ -1,7 +1,7 @@
 import './ContactMethodCard.css';
 
 function ContactMethodCard({ method }) {
-  const { name, description, icon, status, href, external } = method;
+  const { name, description, icon, status, href, external, ariaLabel } = method;
 
   return (
     <article className="contact-method-card">
@@ -12,8 +12,9 @@ function ContactMethodCard({ method }) {
         <a
           className="contact-method-card__action"
           href={href}
-          rel={external ? 'noreferrer' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
           target={external ? '_blank' : undefined}
+          aria-label={ariaLabel ?? `${status}: ${name}`}
         >
           {status}
           <i className="bi bi-arrow-up-right" aria-hidden="true" />

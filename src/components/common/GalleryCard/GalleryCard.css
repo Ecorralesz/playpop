@@ -26,6 +26,14 @@
   object-fit: cover;
 }
 
+.gallery-card--artwork .gallery-card__visual {
+  background-color: var(--color-surface);
+}
+
+.gallery-card--artwork .gallery-card__image {
+  object-fit: contain;
+}
+
 .gallery-card__placeholder {
   position: relative;
   display: flex;

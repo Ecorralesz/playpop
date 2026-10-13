@@ -1,4 +1,5 @@
-import { WHATSAPP_URL } from '../config/contact';
+import { CONTACT_EMAIL, EMAIL_URL, WHATSAPP_URL } from '../config/contact';
+import { socialLinks } from '../config/social';
 
 const contactMethods = [
   {
@@ -10,31 +11,19 @@ const contactMethods = [
     href: WHATSAPP_URL,
     external: true,
   },
-  {
-    id: 'instagram',
-    name: 'Instagram',
-    description: 'Este canal todavía no está disponible para recibir solicitudes.',
-    icon: 'bi-instagram',
-    status: 'Pendiente',
-    href: null,
-    external: false,
-  },
-  {
-    id: 'facebook',
-    name: 'Facebook',
-    description: 'Este canal todavía no está disponible para recibir solicitudes.',
-    icon: 'bi-facebook',
-    status: 'Pendiente',
-    href: null,
-    external: false,
-  },
+  ...socialLinks.map((social) => ({
+    ...social,
+    description: `Conoce más de PlayPop en ${social.name}.`,
+    status: 'Visitar perfil',
+    external: true,
+  })),
   {
     id: 'email',
     name: 'Correo electrónico',
-    description: 'Este canal todavía no está disponible para recibir solicitudes.',
+    description: CONTACT_EMAIL,
     icon: 'bi-envelope',
-    status: 'Pendiente',
-    href: null,
+    status: 'Enviar correo',
+    href: EMAIL_URL,
     external: false,
   },
 ];

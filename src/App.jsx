@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import InflatablesPage from './pages/InflatablesPage';
 import PackagesPage from './pages/PackagesPage';
 import ServicesPage from './pages/ServicesPage';
+import GamesPage from './pages/GamesPage';
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
@@ -18,6 +19,7 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/inflables" element={<InflatablesPage />} />
+        <Route path="/juegos" element={<GamesPage />} />
         <Route path="/paquetes" element={<PackagesPage />} />
         <Route path="/paquetes/:slug" element={<PackageDetailPage />} />
         <Route path="/servicios" element={<ServicesPage />} />

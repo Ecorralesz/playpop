@@ -1,4 +1,5 @@
 import { generalInflatableRules } from './businessRules';
+import { pricing } from './pricing';
 import balloonPopImage from '../assets/images/playpop/game/Juego-dardos-bombas.jpeg';
 import cornholeImage from '../assets/images/playpop/game/Juego-lanza-bolsas-vs.jpeg';
 import dardosGigantesImage from '../assets/images/playpop/game/Juego-dardos-clasico.jpeg';
@@ -11,14 +12,16 @@ import inflableToboganImage from '../assets/images/playpop/inflatable/Castillo 5
 import inflableDeportivoImage from '../assets/images/playpop/inflatable/Inflable 3en1.jpeg';
 import algodonAzucarImage from '../assets/images/playpop/snack/Maquina-algodon.jpeg';
 import palomitasMaizImage from '../assets/images/playpop/snack/Maquina-palomitas.jpeg';
-import babyGymImage from '../assets/images/playpop/inflatable/Baby-gym.jpeg';
+import babyGymImage from '../assets/images/playpop/inflatable/Baby-gym.png';
 
 const inflatable = (data) => ({
   category: 'inflatable',
-  rentalHours: 3,
+  rentalHours: pricing.standardRentalHours,
   featured: true,
   available: null,
   ...data,
+  durationPrices: pricing.inflatables[data.id],
+  price: pricing.inflatables[data.id][pricing.standardRentalHours],
 });
 
 const game = (data) => ({
@@ -28,25 +31,26 @@ const game = (data) => ({
   featured: false,
   available: null,
   ...data,
+  price: pricing.standaloneGames[data.id],
 });
 
 const snack = (data) => ({
   category: 'snack',
   dimensions: null,
   rentalHours: null,
-  minimumQuantity: 10,
+  minimumQuantity: pricing.snacks.minimumQuantity,
   featured: false,
   available: null,
   ...data,
+  price: pricing.snacks.unitPrice,
 });
 
 export const products = [
-  game({
+  inflatable({
     id: 'baby-gym',
     slug: 'baby-gym',
     name: 'Baby Gym',
-    tier: 'premium',
-    price: 15000,
+    imageFit: 'contain',
     ageRestriction: '0 a 4 años',
     description:
       'Área de juego suave pensada para bebés y niños pequeños, con pelotas y superficies acolchadas para disfrutar en un espacio supervisado y apropiado para su edad.',
@@ -65,8 +69,7 @@ export const products = [
     id: 'dardos-gigantes',
     slug: 'dardos-gigantes',
     name: 'Dardos',
-    tier: 'courtesy',
-    price: 10000,
+    tier: 'standard',
     ageRestriction:
       'Recomendado para mayores de 10 años. Niños menores únicamente con supervisión directa de un adulto.',
     rules: [
@@ -82,8 +85,7 @@ export const products = [
     id: 'tumba-latas',
     slug: 'tumba-latas',
     name: 'Tumba Latas',
-    tier: 'courtesy',
-    price: 10000,
+    tier: 'standard',
     ageRestriction: '5+',
     rules: [
       'Lanza los sacos para derribar las latas numeradas. Un participante a la vez dentro del área de lanzamiento.',
@@ -96,7 +98,6 @@ export const products = [
     slug: 'football-toss',
     name: 'Football Toss',
     tier: 'premium',
-    price: 15000,
     ageRestriction: '6+',
     rules: [
       'Los participantes lanzan el balón hacia las aperturas del objetivo. Mantener una distancia segura de lanzamiento.',
@@ -109,7 +110,6 @@ export const products = [
     slug: 'mini-golf',
     name: 'Mini Golf',
     tier: 'premium',
-    price: 15000,
     ageRestriction: '5+',
     rules: [
       'Los participantes juegan por turnos. Mantener a los demás alejados de la persona que está utilizando el palo.',
@@ -121,7 +121,6 @@ export const products = [
     id: 'palomitas-maiz',
     slug: 'palomitas-de-maiz',
     name: 'Palomitas de Maíz',
-    price: 1000,
     priceUnit: 'cada unidad',
     ageRestriction: 'Todas las edades',
     preparation:
@@ -134,8 +133,7 @@ export const products = [
     id: 'cornhole',
     slug: 'lanzamiento-de-sacos-cornhole',
     name: 'Lanzamiento de Sacos / Cornhole',
-    tier: 'courtesy',
-    price: 10000,
+    tier: 'standard',
     ageRestriction: '5+',
     rules: [
       'Los participantes lanzan los sacos hacia los orificios de puntuación. Todos deben permanecer detrás de la línea de lanzamiento.',
@@ -147,11 +145,8 @@ export const products = [
     id: 'inflable-tobogan',
     slug: 'inflable-con-tobogan',
     name: 'Inflable con Tobogán',
-    price: 55000,
     dimensions: '5 × 4 m',
     ageRestriction: '3+',
-    courtesyGameCount: 2,
-    badge: 'Incluye 2 juegos de cortesía',
     rules: [
       ...generalInflatableRules,
       'El equipo no debe moverse después de la instalación sin autorización.',
@@ -163,11 +158,8 @@ export const products = [
     id: 'inflable-deportivo-3-en-1',
     slug: 'inflable-deportivo-3-en-1',
     name: 'Inflable Deportivo 3 en 1',
-    price: 60000,
     dimensions: 'Por confirmar',
     ageRestriction: '5+',
-    courtesyGameCount: 2,
-    badge: 'Incluye 2 juegos de cortesía',
     rules: [
       'Tres áreas de actividad. Los participantes deben rotar entre las actividades.',
       ...generalInflatableRules,
@@ -180,7 +172,6 @@ export const products = [
     slug: 'balloon-pop',
     name: 'Balloon Pop',
     tier: 'premium',
-    price: 15000,
     ageRestriction:
       'Recomendado para mayores de 10 años si se juega con dardos. Supervisión directa de un adulto requerida.',
     rules: [
@@ -193,7 +184,6 @@ export const products = [
     id: 'algodon-azucar',
     slug: 'algodon-de-azucar',
     name: 'Algodón de Azúcar',
-    price: 1000,
     priceUnit: 'cada unidad',
     ageRestriction: 'Todas las edades',
     preparation: 'Preparado y empacado previamente por PlayPop. Se entrega listo para el evento.',
@@ -205,11 +195,8 @@ export const products = [
     id: 'castillo-inflable',
     slug: 'castillo-inflable',
     name: 'Castillo Inflable',
-    price: 40000,
     dimensions: '3 × 3 m',
     ageRestriction: '3+',
-    courtesyGameCount: 1,
-    badge: 'Incluye 1 juego de cortesía',
     rules: [...generalInflatableRules, 'No se debe escalar sobre paredes o mallas de seguridad.'],
     image: castilloInflableImage,
     imageAlt: 'Castillo Inflable 3 por 3 metros de PlayPop',
@@ -218,8 +205,7 @@ export const products = [
     id: 'lanzamiento-aros',
     slug: 'lanzamiento-de-aros',
     name: 'Lanzamiento de Aros',
-    tier: 'courtesy',
-    price: 10000,
+    tier: 'standard',
     ageRestriction: '4+',
     rules: [
       'Los participantes lanzan los aros de colores hacia los objetivos. Un participante a la vez desde la línea designada.',
@@ -237,8 +223,5 @@ export const getProductsByCategory = (category) =>
   products.filter((product) => product.category === category);
 export const getProductsByIds = (ids = []) =>
   ids?.map((id) => products.find((product) => product.id === id)).filter(Boolean) ?? [];
-export const gameIdsByTier = {
-  courtesy: ['tumba-latas', 'dardos-gigantes', 'cornhole', 'lanzamiento-aros'],
-  premium: ['balloon-pop', 'football-toss', 'mini-golf'],
-};
-export const getGamesByTier = (tier) => getProductsByIds(gameIdsByTier[tier]);
+export const getGamesByTier = (tier) =>
+  getProductsByCategory('game').filter((product) => product.tier === tier);
