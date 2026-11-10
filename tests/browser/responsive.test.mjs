@@ -338,3 +338,80 @@ for (const width of layoutWidths) {
     }
   });
 }
+
+for (const width of layoutWidths) {
+  test(`featured product spacing follows content and token rhythm at ${width}px`, async () => {
+    const page = await browser.newPage({
+      viewport: { width, height: 1000 },
+      reducedMotion: 'reduce',
+    });
+    try {
+      await page.goto(baseURL);
+      const cards = page.locator('.featured-inflatables .product-card');
+      await expect(cards).toHaveCount(4);
+      const metrics = await cards.evaluateAll((elements) =>
+        elements.map((card) => {
+          const body = card.querySelector('.product-card__body');
+          const title = card.querySelector('.product-card__name');
+          const price = card.querySelector('.product-card__description');
+          const link = card.querySelector('.product-card__link');
+          const bodyRect = body.getBoundingClientRect();
+          const titleRect = title.getBoundingClientRect();
+          const priceRect = price.getBoundingClientRect();
+          const linkRect = link.getBoundingClientRect();
+          return {
+            paragraphCount: body.querySelectorAll('p').length,
+            padding: parseFloat(getComputedStyle(body).paddingLeft),
+            titlePriceGap: priceRect.top - titleRect.bottom,
+            priceActionGap: linkRect.top - priceRect.bottom,
+            priceHeight: priceRect.height,
+            priceLineHeight: parseFloat(getComputedStyle(price).lineHeight),
+            bottomPadding: bodyRect.bottom - linkRect.bottom,
+            actionHeight: linkRect.height,
+            priceColor: getComputedStyle(card.querySelector('.product-card__price')).color,
+            durationColor: getComputedStyle(card.querySelector('.product-card__duration')).color,
+          };
+        }),
+      );
+      for (const metric of metrics) {
+        assert.equal(
+          metric.paragraphCount,
+          1,
+          'featured cards show price without long catalog descriptions',
+        );
+        assert.equal(metric.padding, width < 576 ? 20 : 24);
+        close(metric.titlePriceGap, 12, 'title-to-price gap');
+        assert.ok(
+          metric.priceActionGap >= 19 && metric.priceActionGap <= 43,
+          `compact price-to-action gap: ${metric.priceActionGap}`,
+        );
+        close(metric.priceHeight, metric.priceLineHeight, 'price occupies one natural line');
+        close(metric.bottomPadding, metric.padding, 'action bottom padding');
+        assert.ok(metric.actionHeight >= 44, 'touch target');
+        assert.notEqual(
+          metric.priceColor,
+          metric.durationColor,
+          'price has stronger contrast than duration',
+        );
+      }
+      if (width === 390 || width === 1440) {
+        const { tmpdir } = await import('node:os');
+        const { join } = await import('node:path');
+        await page
+          .locator('.featured-inflatables')
+          .screenshot({ path: join(tmpdir(), `playpop-featured-spacing-${width}.png`) });
+      }
+      // Full descriptions remain available in the catalog and product detail.
+      const { getProductBySlug } = await server.ssrLoadModule('/src/data/products.js');
+      const babyGym = getProductBySlug('baby-gym');
+      await page.goto(`${baseURL}inflables`);
+      await expect(page.locator('.product-card').filter({ hasText: 'Baby Gym' })).toContainText(
+        babyGym.description,
+      );
+      await page.goto(`${baseURL}inflables/baby-gym`);
+      await expect(page.locator('main')).toContainText(babyGym.description);
+    } finally {
+      await page.close();
+    }
+  });
+}

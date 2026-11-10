@@ -141,3 +141,9 @@
     transition: none;
   }
 }
+
+@media (max-width: 575.98px) {
+  .gallery-card__body {
+    padding: calc(var(--space-4) + var(--space-1));
+  }
+}
