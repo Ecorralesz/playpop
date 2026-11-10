@@ -4,7 +4,7 @@ import { getProductRoute } from '../../../data/products';
 
 import './ProductCard.css';
 
-function ProductCard({ product }) {
+function ProductCard({ product, showDescription = true }) {
   const { name, image, imageAlt, price, rentalHours } = product;
 
   return (
@@ -25,14 +25,16 @@ function ProductCard({ product }) {
       <div className="product-card__body">
         <h3 className="product-card__name">{name}</h3>
         <p className="product-card__description">
-          <strong>{formatColones(price)}</strong>
-          {rentalHours
-            ? ` / ${rentalHours} horas`
-            : product.priceUnit
-              ? ` ${product.priceUnit}`
-              : ''}
+          <strong className="product-card__price">{formatColones(price)}</strong>
+          <span className="product-card__duration">
+            {rentalHours
+              ? ` / ${rentalHours} horas`
+              : product.priceUnit
+                ? ` ${product.priceUnit}`
+                : ''}
+          </span>
         </p>
-        {product.description && <p>{product.description}</p>}
+        {showDescription && product.description && <p>{product.description}</p>}
         {product.tier && (
           <p>
             <strong>{gameTierLabels[product.tier]}</strong>

@@ -28,7 +28,7 @@
   flex-direction: column;
   min-width: 0;
   overflow-wrap: anywhere;
-  padding: var(--space-6);
+  padding: var(--space-5);
 }
 
 .package-card__badge {
@@ -113,5 +113,11 @@
   .package-card,
   .package-card__link .bi {
     transition: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .package-card__body {
+    padding: calc(var(--space-4) + var(--space-1));
   }
 }

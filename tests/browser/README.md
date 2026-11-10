@@ -20,3 +20,10 @@ Media playback is not mocked in this suite.
 `npm test` continues to run the existing data, rendered-component and media
 API tests without requiring a browser. Browser checks emulate viewport sizes;
 they do not replace checks on physical mobile devices or Safari/Firefox.
+
+Featured-card spacing checks verify natural one-line prices, a 12px title/price
+gap, a 20–42px price/action gap (allowing for a wrapped neighboring title),
+24px desktop and 20px narrow-screen padding, and 44px minimum CTA targets.
+They also verify that full Baby Gym descriptions remain in the catalog and
+detail page. Desktop (1440px) and mobile (390px) screenshots are written to the
+system temporary directory as `playpop-featured-spacing-<width>.png`.

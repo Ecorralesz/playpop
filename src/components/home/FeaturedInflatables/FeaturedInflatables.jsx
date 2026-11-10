@@ -28,7 +28,7 @@ function FeaturedInflatables() {
 
         <CardGrid columns={2}>
           {featuredInflatables.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} showDescription={false} />
           ))}
         </CardGrid>
       </Container>
