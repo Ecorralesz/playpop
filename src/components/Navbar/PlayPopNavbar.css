@@ -17,9 +17,14 @@
 }
 
 .playpop-navbar__logo {
-  width: 3.75rem;
-  height: 3.75rem;
+  width: 4rem;
+  height: 4rem;
   object-fit: contain;
+}
+
+.playpop-navbar .navbar-toggler {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
 }
 
 .playpop-navbar__links {
@@ -53,15 +58,28 @@
   align-self: flex-start;
   margin-top: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  color: var(--color-white);
+  color: var(--color-success);
+  background-color: var(--color-white);
+  border: 2px solid var(--color-success);
+  min-height: 2.75rem;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease;
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
   border-radius: var(--radius-pill);
 }
 
-.playpop-navbar .playpop-navbar__whatsapp:hover,
-.playpop-navbar .playpop-navbar__whatsapp:focus-visible {
+.playpop-navbar .playpop-navbar__whatsapp:hover {
   color: var(--color-white);
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.playpop-navbar .playpop-navbar__whatsapp:focus-visible {
+  outline: 3px solid var(--color-success);
+  outline-offset: 3px;
 }
 
 @media (min-width: 992px) {
@@ -74,5 +92,20 @@
     align-self: auto;
     margin-top: 0;
     margin-left: var(--space-2);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .playpop-navbar__links {
+    gap: 0;
+  }
+
+  .playpop-navbar .playpop-navbar__link {
+    padding-inline: var(--space-2);
+  }
+
+  .playpop-navbar .playpop-navbar__whatsapp {
+    margin-left: var(--space-1);
+    padding-inline: var(--space-3);
   }
 }

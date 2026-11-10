@@ -1,0 +1,14 @@
+.featured-inflatables {
+  padding-block: var(--space-7);
+  background-color: var(--color-surface);
+}
+
+.featured-inflatables__container {
+  max-width: var(--layout-max-width);
+}
+
+@media (min-width: 992px) {
+  .featured-inflatables {
+    padding-block: var(--space-8);
+  }
+}

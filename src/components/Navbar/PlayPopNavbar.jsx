@@ -1,17 +1,10 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import playPopLogo from '../../assets/images/playpop-logo.png';
+import { GENERAL_QUOTATION_URL } from '../../config/contact';
+import { navigationItems } from '../../config/navigation';
 import './PlayPopNavbar.css';
-
-const navigationItems = [
-  { label: 'Inicio', to: '/', end: true },
-  { label: 'Inflables', to: '/inflables' },
-  { label: 'Paquetes', to: '/paquetes' },
-  { label: 'Servicios', to: '/servicios' },
-  { label: 'Galería', to: '/galeria' },
-  { label: 'Contacto', to: '/contacto' },
-];
 
 function PlayPopNavbar() {
   return (
@@ -32,6 +25,17 @@ function PlayPopNavbar() {
           />
         </Navbar.Brand>
 
+
+        <Nav.Link
+          className="playpop-navbar__whatsapp btn btn-success"
+          href={GENERAL_QUOTATION_URL}
+          rel="noreferrer"
+          target="_blank"
+        >
+          <i className="bi bi-whatsapp" aria-hidden="true" />
+          <span className="visually-hidden"> (abre en una nueva pestaña)</span>
+        </Nav.Link>
+
         <Navbar.Toggle aria-controls="playpop-navigation" aria-label="Abrir menú de navegación" />
 
         <Navbar.Collapse id="playpop-navigation">
@@ -48,17 +52,6 @@ function PlayPopNavbar() {
                 {label}
               </Nav.Link>
             ))}
-
-            <Nav.Link
-              className="playpop-navbar__whatsapp btn btn-success"
-              href="https://wa.me/50663892727"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <i className="bi bi-whatsapp" aria-hidden="true" />
-              WhatsApp
-              <span className="visually-hidden"> (abre en una nueva pestaña)</span>
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

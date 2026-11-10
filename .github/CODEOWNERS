@@ -1,0 +1,15 @@
+# Default reviewer
+
+* @Ecorralesz
+
+# Documentation
+
+*.md @Ecorralesz
+
+# React
+
+src/** @Ecorralesz
+
+# Styles
+
+src/**/*.css @Ecorralesz

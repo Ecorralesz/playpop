@@ -1,14 +1,17 @@
-import { Routes, Route } from 'react-router';
+import { Routes, Route } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import InflatablesPage from './pages/InflatablesPage';
 import PackagesPage from './pages/PackagesPage';
+import GamesPage from './pages/GamesPage';
 import ServicesPage from './pages/ServicesPage';
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import PackageDetailPage from './pages/PackageDetailPage';
 
 function App() {
   return (
@@ -16,10 +19,15 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/inflables" element={<InflatablesPage />} />
+        <Route path="/juegos" element={<GamesPage />} />
         <Route path="/paquetes" element={<PackagesPage />} />
+        <Route path="/paquetes/:slug" element={<PackageDetailPage />} />
         <Route path="/servicios" element={<ServicesPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/inflables/:slug" element={<ProductDetailPage />} />
+        <Route path="/juegos/:slug" element={<ProductDetailPage />} />
+        <Route path="/snacks/:slug" element={<ProductDetailPage />} />
         <Route path="/carrito" element={<CartPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
