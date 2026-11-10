@@ -264,7 +264,8 @@ test('real duration buttons update summary and encoded quotation for all inflata
     const selected = () =>
       document.querySelector('.product-detail__duration button[aria-pressed="true"]');
     assert.match(selected().textContent, /^3 horas \(estándar\)/);
-    for (const hours of [2, 4, 5]) {
+    assert.equal(document.querySelectorAll('.product-detail__duration button').length, 4);
+    for (const hours of [3, 2, 4, 5]) {
       const button = [...document.querySelectorAll('.product-detail__duration button')].find(
         (item) => item.textContent.startsWith(`${hours} horas`),
       );
@@ -285,6 +286,8 @@ test('real duration buttons update summary and encoded quotation for all inflata
       assert.match(message, /transporte se cotiza por separado/);
       assert.match(message, /no confirma disponibilidad ni reservación/);
       assert.ok(href.includes(encodeURIComponent(message)));
+      assert.equal(new URL(href).origin + new URL(href).pathname, 'https://wa.me/50663892727');
+      assert.doesNotMatch(message, /cortes[ií]a|juegos? gratis|gratuitos?/i);
     }
     assert.equal(document.querySelector('.product-detail table'), null);
   }

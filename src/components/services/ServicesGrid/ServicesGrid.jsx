@@ -1,4 +1,5 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../../common/CardGrid/CardGrid';
 import ProductCard from '../../common/ProductCard/ProductCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
 import { getProductsByCategory } from '../../../data/products';
@@ -15,13 +16,11 @@ function ServicesGrid() {
           description="Consulta precios, pedidos mínimos y preparación de cada producto."
           headingId="services-grid-heading"
         />
-        <Row className="g-4">
+        <CardGrid columns={2}>
           {snacks.map((product) => (
-            <Col className="d-flex" key={product.id} md={6} xl={3}>
-              <ProductCard product={product} />
-            </Col>
+            <ProductCard key={product.id} product={product} />
           ))}
-        </Row>
+        </CardGrid>
       </Container>
     </section>
   );

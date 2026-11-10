@@ -238,12 +238,12 @@ test('Baby Gym is a single featured inflatable using the PNG and approved durati
   assert.equal(products.filter((product) => product.id === 'baby-gym').length, 1);
   assert.equal(babyGym.category, 'inflatable');
   assert.equal(babyGym.featured, true);
-  assert.equal(babyGym.price, 35000);
+  assert.equal(babyGym.price, 40000);
   assert.equal(babyGym.rentalHours, 3);
   assert.equal(babyGym.imageFit, 'contain');
   assert.match(babyGym.image, /Baby-gym\.png$/);
   await access(new URL('../src/assets/images/playpop/inflatable/Baby-gym.png', import.meta.url));
-  assert.deepEqual(babyGym.durationPrices, { 2: 30000, 3: 35000, 4: 40000, 5: 45000 });
+  assert.deepEqual(babyGym.durationPrices, { 2: 35000, 3: 40000, 4: 45000, 5: 50000 });
   assert.equal(getProductRoute(babyGym), '/inflables/baby-gym');
   assert.ok(getProductsByCategory('inflatable').includes(babyGym));
   assert.ok(!getProductsByCategory('game').includes(babyGym));
@@ -257,7 +257,7 @@ test('Baby Gym renders on the homepage and Inflables page with its uncropped PNG
     assert.match(html, /product-card--contain/);
     assert.match(html, /Baby-gym\.png/);
     assert.doesNotMatch(html, /Baby-gym\.jpeg/);
-    assert.match(html, /₡35[.,\s]000/);
+    assert.match(html, /₡40[.,\s]000/);
   }
 });
 
@@ -267,10 +267,10 @@ test('Baby Gym detail route renders interactive prices and the approved after-fi
   assert.match(html, /product-detail__image--contain/);
   assert.match(html, /Baby-gym\.png/);
   for (const [hours, price] of [
-    [2, 30],
-    [3, 35],
-    [4, 40],
-    [5, 45],
+    [2, 35],
+    [3, 40],
+    [4, 45],
+    [5, 50],
   ]) {
     assert.match(html, new RegExp(`${hours} horas(?: \\(estándar\\))?: ₡${price}[.,\\s]000`));
   }
@@ -448,12 +448,14 @@ test('official contact configuration and methods use single approved email, soci
 test('central inflatable pricing retains every approved tier and applies extra hours only after five', async () => {
   const { pricing, getInflatablePrice } = await server.ssrLoadModule('/src/data/pricing.js');
   const approved = {
-    'castillo-inflable': { 2: 35000, 3: 40000, 4: 45000, 5: 50000 },
-    'baby-gym': { 2: 30000, 3: 35000, 4: 40000, 5: 45000 },
-    'inflable-tobogan': { 2: 45000, 3: 50000, 4: 55000, 5: 65000 },
-    'inflable-deportivo-3-en-1': { 2: 50000, 3: 55000, 4: 60000, 5: 70000 },
+    'castillo-inflable': { 2: 45000, 3: 50000, 4: 55000, 5: 60000 },
+    'baby-gym': { 2: 35000, 3: 40000, 4: 45000, 5: 50000 },
+    'inflable-tobogan': { 2: 55000, 3: 60000, 4: 65000, 5: 70000 },
+    'inflable-deportivo-3-en-1': { 2: 55000, 3: 60000, 4: 65000, 5: 70000 },
   };
   assert.deepEqual(pricing.inflatables, approved);
+  assert.deepEqual(pricing.inflatableDurations, [2, 3, 4, 5]);
+  assert.equal(pricing.standardRentalHours, 3);
   for (const [id, tiers] of Object.entries(approved)) {
     for (const [hours, price] of Object.entries(tiers))
       assert.equal(getInflatablePrice(id, Number(hours)), price);

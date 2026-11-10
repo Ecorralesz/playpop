@@ -1,4 +1,5 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../../common/CardGrid/CardGrid';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -59,13 +60,11 @@ function GalleryGrid() {
             <h3 className="gallery-grid__section-title" id="gallery-photos-heading">
               Momentos PlayPop
             </h3>
-            <Row className="g-4 gallery-grid__photos">
+            <CardGrid columns={2} className="gallery-grid__photos">
               {photoCollections.map((item) => (
-                <Col className="d-flex" key={item.id} xs={12} md={6} lg={4}>
-                  <GalleryCard item={item} onOpen={setCollection} />
-                </Col>
+                <GalleryCard key={item.id} item={item} onOpen={setCollection} />
               ))}
-            </Row>
+            </CardGrid>
           </section>
         )}
         {filter !== 'photos' && (

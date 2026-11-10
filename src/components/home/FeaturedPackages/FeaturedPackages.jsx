@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../../common/CardGrid/CardGrid';
 
 import PackageCard from '../../common/PackageCard/PackageCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
@@ -17,13 +18,11 @@ function FeaturedPackages() {
           headingId="featured-packages-heading"
         />
 
-        <Row className="g-4">
+        <CardGrid columns={3}>
           {featuredPackages.map((packageData) => (
-            <Col className="d-flex" key={packageData.id} md={6} lg={4}>
-              <PackageCard packageData={packageData} />
-            </Col>
+            <PackageCard key={packageData.id} packageData={packageData} />
           ))}
-        </Row>
+        </CardGrid>
         <Link className="btn btn-outline-primary mt-4" to="/paquetes">
           Ver todos los paquetes
         </Link>

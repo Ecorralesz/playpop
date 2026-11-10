@@ -3,10 +3,10 @@ export const pricing = {
   standardRentalHours: 3,
   inflatableDurations: [2, 3, 4, 5],
   inflatables: {
-    'castillo-inflable': { 2: 35000, 3: 40000, 4: 45000, 5: 50000 },
-    'baby-gym': { 2: 30000, 3: 35000, 4: 40000, 5: 45000 },
-    'inflable-tobogan': { 2: 45000, 3: 50000, 4: 55000, 5: 65000 },
-    'inflable-deportivo-3-en-1': { 2: 50000, 3: 55000, 4: 60000, 5: 70000 },
+    'castillo-inflable': { 2: 45000, 3: 50000, 4: 55000, 5: 60000 },
+    'baby-gym': { 2: 35000, 3: 40000, 4: 45000, 5: 50000 },
+    'inflable-tobogan': { 2: 55000, 3: 60000, 4: 65000, 5: 70000 },
+    'inflable-deportivo-3-en-1': { 2: 55000, 3: 60000, 4: 65000, 5: 70000 },
   },
   standaloneGames: {
     'dardos-gigantes': 5000,

@@ -1,4 +1,5 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../../common/CardGrid/CardGrid';
 import ContactMethodCard from '../../common/ContactMethodCard/ContactMethodCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
 import contactMethods from '../../../data/contactMethods';
@@ -14,13 +15,11 @@ function ContactMethods() {
           description="WhatsApp es actualmente el medio principal para solicitar información y cotizaciones."
           headingId="contact-methods-heading"
         />
-        <Row className="g-4">
+        <CardGrid columns={2} equalRows>
           {contactMethods.map((method) => (
-            <Col key={method.id} xs={12} md={6} xl={3}>
-              <ContactMethodCard method={method} />
-            </Col>
+            <ContactMethodCard key={method.id} method={method} />
           ))}
-        </Row>
+        </CardGrid>
       </Container>
     </section>
   );

@@ -10,6 +10,3 @@
 .contact-methods__container {
   max-width: var(--layout-max-width);
 }
-.contact-methods .col-12 {
-  display: flex;
-}

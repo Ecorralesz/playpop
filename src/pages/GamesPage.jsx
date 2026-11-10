@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../components/common/CardGrid/CardGrid';
 import CategoryFilters from '../components/common/CategoryFilters/CategoryFilters';
 import ProductCard from '../components/common/ProductCard/ProductCard';
 import CatalogQuotationCTA from '../components/catalog/CatalogQuotationCTA/CatalogQuotationCTA';
@@ -35,13 +36,11 @@ function GamesPage() {
           <p className="visually-hidden" role="status">
             {games.length} juegos en esta categoría.
           </p>
-          <Row className="g-4">
+          <CardGrid columns={4}>
             {games.map((product) => (
-              <Col className="d-flex" key={product.id} md={6} xl={3}>
-                <ProductCard product={product} />
-              </Col>
+              <ProductCard key={product.id} product={product} />
             ))}
-          </Row>
+          </CardGrid>
         </Container>
       </section>
       <CatalogQuotationCTA />
