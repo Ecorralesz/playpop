@@ -1,4 +1,5 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../../common/CardGrid/CardGrid';
 
 import ProductCard from '../../common/ProductCard/ProductCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
@@ -25,13 +26,11 @@ function FeaturedInflatables() {
           headingId="featured-inflatables-heading"
         />
 
-        <Row className="g-4">
+        <CardGrid columns={2}>
           {featuredInflatables.map((product) => (
-            <Col className="d-flex" key={product.id} md={6} lg={4}>
-              <ProductCard product={product} />
-            </Col>
+            <ProductCard key={product.id} product={product} />
           ))}
-        </Row>
+        </CardGrid>
       </Container>
     </section>
   );

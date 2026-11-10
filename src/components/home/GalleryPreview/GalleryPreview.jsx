@@ -1,4 +1,5 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../../common/CardGrid/CardGrid';
 import { Link } from 'react-router-dom';
 
 import GalleryCard from '../../common/GalleryCard/GalleryCard';
@@ -17,13 +18,11 @@ function GalleryPreview() {
           headingId="gallery-preview-heading"
         />
 
-        <Row className="g-4">
+        <CardGrid columns={2}>
           {galleryPreviewItems.map((item) => (
-            <Col className="d-flex" key={item.id} md={6} lg={4}>
-              <GalleryCard item={item} />
-            </Col>
+            <GalleryCard key={item.id} item={item} />
           ))}
-        </Row>
+        </CardGrid>
 
         <div className="gallery-preview__cta">
           <Link className="gallery-preview__link" to="/galeria">

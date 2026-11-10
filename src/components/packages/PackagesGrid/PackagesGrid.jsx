@@ -1,4 +1,5 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import CardGrid from '../../common/CardGrid/CardGrid';
 import PackageCard from '../../common/PackageCard/PackageCard';
 import ProductCard from '../../common/ProductCard/ProductCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
@@ -23,13 +24,11 @@ function PackagesGrid() {
             eligen sujetos a disponibilidad.
           </p>
         </aside>
-        <Row className="g-4">
+        <CardGrid columns={3}>
           {packages.map((item) => (
-            <Col className="d-flex" key={item.id} md={6} lg={4}>
-              <PackageCard packageData={item} />
-            </Col>
+            <PackageCard key={item.id} packageData={item} />
           ))}
-        </Row>
+        </CardGrid>
         <div className="mt-5">
           <SectionHeader
             eyebrow="Alquiler estándar"
@@ -38,13 +37,11 @@ function PackagesGrid() {
             headingId="inflatable-offers-heading"
           />
         </div>
-        <Row className="g-4">
+        <CardGrid columns={2}>
           {getProductsByCategory('inflatable').map((product) => (
-            <Col className="d-flex" key={product.id} md={6} lg={4}>
-              <ProductCard product={product} />
-            </Col>
+            <ProductCard key={product.id} product={product} />
           ))}
-        </Row>
+        </CardGrid>
       </Container>
     </section>
   );

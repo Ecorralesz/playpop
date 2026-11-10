@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   width: 100%;
+  min-width: 0;
   height: 100%;
   overflow: hidden;
   background-color: var(--color-background);
@@ -25,6 +26,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
   padding: var(--space-6);
 }
 
