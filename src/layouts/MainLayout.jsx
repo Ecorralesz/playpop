@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from '../components/layout/Footer/Footer';
 import PlayPopNavbar from '../components/Navbar/PlayPopNavbar';
 import ScrollToTop from '../components/common/ScrollToTop/ScrollToTop';
+import PromotionModal from '../components/promotions/PromotionModal';
 import './MainLayout.css';
 
 function MainLayout() {
@@ -27,6 +28,7 @@ function MainLayout() {
       </main>
 
       <Footer />
+      <PromotionModal />
     </div>
   );
 }

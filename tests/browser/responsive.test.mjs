@@ -15,6 +15,16 @@ after(async () => {
   await server?.close();
 });
 
+// Existing layout/media regressions exercise the site after campaign dismissal.
+// The dedicated promotion suite covers the first-visit experience separately.
+async function regressionPage(options) {
+  const page = await browser.newPage(options);
+  await page.addInitScript(() => {
+    localStorage.setItem('playpop-promotion-nov-dec-2026-dismissed', 'true');
+  });
+  return page;
+}
+
 const approved = [
   ['castillo-inflable', 'Castillo Inflable', [45000, 50000, 55000, 60000]],
   ['baby-gym', 'Baby Gym', [35000, 40000, 45000, 50000]],
@@ -25,7 +35,7 @@ const money = (amount) => `₡${new Intl.NumberFormat('es-CR').format(amount)}`;
 
 for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
   test(`homepage fits ${width}px while reels scroll internally, even without global clipping`, async () => {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    const page = await regressionPage({ viewport: { width, height: 900 } });
     try {
       await page.goto(baseURL);
       // A root-cause fix must work without the pre-existing main overflow clip.
@@ -71,7 +81,7 @@ for (const width of [320, 375, 390, 430, 768, 1024, 1440]) {
 
 for (const width of [375, 1440]) {
   test(`navbar WhatsApp has visible default, hover and keyboard focus states at ${width}px`, async () => {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    const page = await regressionPage({ viewport: { width, height: 900 } });
     try {
       await page.goto(baseURL);
       const toggle = page.locator('.playpop-navbar .navbar-toggler');
@@ -113,7 +123,7 @@ for (const width of [375, 1440]) {
 }
 
 test('catalog and all four detail routes preserve exact pricing and dynamic encoded quotations', async () => {
-  const page = await browser.newPage({ viewport: { width: 390, height: 900 } });
+  const page = await regressionPage({ viewport: { width: 390, height: 900 } });
   try {
     await page.goto(`${baseURL}inflables`);
     for (const [slug, , prices] of approved) {
@@ -163,7 +173,7 @@ test('catalog and all four detail routes preserve exact pricing and dynamic enco
 });
 
 test('photo collections, video viewer playback and package detail navigation remain functional', async () => {
-  const page = await browser.newPage();
+  const page = await regressionPage();
   try {
     await page.goto(`${baseURL}galeria?filter=photos`);
     await expect(page.locator('.gallery-card')).toHaveCount(4);
@@ -243,7 +253,7 @@ function assertRows(cards, label) {
 
 for (const width of layoutWidths) {
   test(`contact symmetry and repeated card groups at ${width}px`, async () => {
-    const page = await browser.newPage({
+    const page = await regressionPage({
       viewport: { width, height: 1000 },
       reducedMotion: 'reduce',
     });
@@ -341,7 +351,7 @@ for (const width of layoutWidths) {
 
 for (const width of layoutWidths) {
   test(`featured product spacing follows content and token rhythm at ${width}px`, async () => {
-    const page = await browser.newPage({
+    const page = await regressionPage({
       viewport: { width, height: 1000 },
       reducedMotion: 'reduce',
     });

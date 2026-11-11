@@ -12,6 +12,8 @@ let calls = [],
 
 before(async () => {
   const dom = new JSDOM('<!doctype html><html><body></body></html>', { url: 'http://localhost/' });
+  // These tests cover existing UI after the welcome promotion has been dismissed.
+  dom.window.localStorage.setItem('playpop-promotion-nov-dec-2026-dismissed', 'true');
   for (const name of [
     'window',
     'document',
