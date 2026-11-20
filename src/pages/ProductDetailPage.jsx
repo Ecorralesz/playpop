@@ -120,7 +120,13 @@ function ProductDetails({ product }) {
                 <p>{product.preparation}</p>
               </>
             )}
+            {product.shortDescription && <p>{product.shortDescription}</p>}
             {product.description && <p>{product.description}</p>}
+            {product.capacity && (
+              <p>
+                <strong>Capacidad recomendada:</strong> {product.capacity}
+              </p>
+            )}
             <h2>Reglas de uso</h2>
             <ul>
               {product.rules.map((rule) => (
