@@ -252,7 +252,7 @@ test('Baby Gym is a single featured inflatable using the PNG and approved durati
 test('Baby Gym renders on the homepage and Inflables page with its uncropped PNG and correct link', async () => {
   for (const path of ['/src/pages/HomePage.jsx', '/src/pages/InflatablesPage.jsx']) {
     const html = await render(path);
-    assert.equal((html.match(/aria-label="Ver detalles de Baby Gym"/g) || []).length, 1);
+    assert.equal((html.match(/aria-label="Ver detalles de Baby Gym"/g) || []).length, 2);
     assert.match(html, /href="\/inflables\/baby-gym"/);
     assert.match(html, /product-card--contain/);
     assert.match(html, /Baby-gym\.png/);
@@ -356,16 +356,19 @@ test('direct Servicios route renders only two food services with unit prices, mi
   }
 });
 
-test('Inflables route remains restricted to four inflatables', async () => {
-  const { getProductsByCategory } = await server.ssrLoadModule('/src/data/products.js');
+test('Inflables route renders four cards with the approved name on each face', async () => {
   const html = await render('/src/App.jsx', '/inflables');
-  assert.deepEqual(
-    productNames(html).sort(),
-    getProductsByCategory('inflatable')
-      .map((item) => item.name)
-      .sort(),
-  );
-  assert.equal(productNames(html).length, 4);
+  assert.equal((html.match(/product-card--flip"/g) || []).length, 4);
+  assert.deepEqual(productNames(html).sort(), [
+    'Baby Gym',
+    'Baby Gym',
+    'Castillo Inflable 3×3',
+    'Castillo Inflable 3×3',
+    'Inflable Deportivo 3 en 1',
+    'Inflable Deportivo 3 en 1',
+    'Inflable con Tobogán 5×4',
+    'Inflable con Tobogán 5×4',
+  ]);
 });
 
 test('navbar and footer share all seven distinct approved navigation links', async () => {

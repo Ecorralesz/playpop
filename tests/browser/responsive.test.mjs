@@ -135,6 +135,8 @@ test('catalog and all four detail routes preserve exact pricing and dynamic enco
     for (const [slug, name, prices] of approved) {
       await page.goto(`${baseURL}inflables/${slug}`);
       await expect(page.locator('h1')).toHaveText(name);
+      const [, , capacity] = flipProducts.find(([productSlug]) => productSlug === slug);
+      await expect(page.locator('main')).toContainText(capacity);
       const buttons = page.locator('.product-detail__duration button');
       await expect(buttons).toHaveCount(4);
       await expect(page.locator('.product-detail__duration [aria-pressed="true"]')).toContainText(
@@ -389,14 +391,14 @@ for (const width of layoutWidths) {
           1,
           'featured cards show price without long catalog descriptions',
         );
-        assert.equal(metric.padding, width < 576 ? 20 : 24);
-        close(metric.titlePriceGap, 12, 'title-to-price gap');
+        assert.equal(metric.padding, 16);
+        close(metric.titlePriceGap, 4, 'title-to-price gap');
         assert.ok(
-          metric.priceActionGap >= 19 && metric.priceActionGap <= 43,
+          metric.priceActionGap >= 3 && metric.priceActionGap <= 16,
           `compact price-to-action gap: ${metric.priceActionGap}`,
         );
         close(metric.priceHeight, metric.priceLineHeight, 'price occupies one natural line');
-        close(metric.bottomPadding, metric.padding, 'action bottom padding');
+        close(metric.bottomPadding, 12, 'action bottom padding');
         assert.ok(metric.actionHeight >= 44, 'touch target');
         assert.notEqual(
           metric.priceColor,
@@ -411,17 +413,160 @@ for (const width of layoutWidths) {
           .locator('.featured-inflatables')
           .screenshot({ path: join(tmpdir(), `playpop-featured-spacing-${width}.png`) });
       }
-      // Full descriptions remain available in the catalog and product detail.
+      // The catalog back and detail page share the short description.
       const { getProductBySlug } = await server.ssrLoadModule('/src/data/products.js');
       const babyGym = getProductBySlug('baby-gym');
       await page.goto(`${baseURL}inflables`);
       await expect(page.locator('.product-card').filter({ hasText: 'Baby Gym' })).toContainText(
-        babyGym.description,
+        babyGym.shortDescription,
       );
       await page.goto(`${baseURL}inflables/baby-gym`);
+      await expect(page.locator('main')).toContainText(babyGym.shortDescription);
       await expect(page.locator('main')).toContainText(babyGym.description);
     } finally {
       await page.close();
     }
   });
 }
+
+const flipProducts = [
+  ['baby-gym', 'Baby Gym', 'Hasta 8 niños simultáneamente'],
+  ['castillo-inflable', 'Castillo Inflable 3×3', 'Hasta 10 niños simultáneamente'],
+  ['inflable-con-tobogan', 'Inflable con Tobogán 5×4', 'Hasta 12 niños simultáneamente'],
+  ['inflable-deportivo-3-en-1', 'Inflable Deportivo 3 en 1', 'Multiples jugadores.'],
+];
+const flipCard = (page, name) =>
+  page
+    .locator('.product-card--flip')
+    .filter({ has: page.getByRole('heading', { name, exact: true }) });
+
+for (const width of layoutWidths) {
+  test(`inflatable cards keep aligned fronts and stable backs at ${width}px`, async () => {
+    const page = await regressionPage({
+      viewport: { width, height: 900 },
+      hasTouch: true,
+      isMobile: width < 768,
+      reducedMotion: 'reduce',
+    });
+    try {
+      for (const route of ['', 'inflables']) {
+        await page.goto(`${baseURL}${route}`);
+        await page.addStyleTag({ content: 'main { overflow: visible !important; }' });
+        const selector = '.product-card--flip';
+        await expect(page.locator(selector)).toHaveCount(4);
+        const beforeFlip = await measureCards(page, selector, [
+          '.product-card__media',
+          '.product-card__name',
+          '.product-card__description',
+          '.product-card__link',
+        ]);
+        assertRows(beforeFlip, 'inflatable fronts');
+        for (const [slug, name, capacity] of flipProducts) {
+          const [, , prices] = approved.find(([approvedSlug]) => approvedSlug === slug);
+          const card = flipCard(page, name);
+          const button = card.getByRole('button');
+          const heading = card.getByRole('heading', { name, exact: true });
+          const link = card.getByRole('link', { name: `Ver detalles de ${name}`, exact: true });
+          const front = card.locator('.product-card__face').first();
+          const back = card.locator('.product-card__face--back');
+          const size = await card.boundingBox();
+          await expect(heading).toHaveCount(1);
+          await expect(front).toContainText(`${money(prices[1])} / 3 horas`);
+          await expect(link).toHaveAttribute('href', `/inflables/${slug}`);
+          await expect(back).toHaveAttribute('inert', '');
+          await expect(back).toHaveAttribute('aria-hidden', 'true');
+          await expect(card.locator('.product-card__rotor')).toHaveCSS('transition-duration', '0s');
+          await expect(button).toHaveText('Girar');
+          await expect(button).toHaveCSS('clip-path', 'none');
+          await button.tap();
+          await expect(card).toHaveAttribute('data-flipped', 'true');
+          await expect(button).toHaveText('Volver');
+          await expect(heading).toHaveCount(1);
+          await expect(front).toHaveAttribute('inert', '');
+          await expect(front).toHaveAttribute('aria-hidden', 'true');
+          const badge = back.locator('.product-card__capacity');
+          await expect(badge).toHaveText(capacity);
+          const content = await back.locator('.product-card__back-content').boundingBox();
+          const title = await heading.boundingBox();
+          const summary = await back.locator('.product-card__summary').boundingBox();
+          const capacityBox = await badge.boundingBox();
+          const action = await link.boundingBox();
+          for (const box of [title, summary, capacityBox]) {
+            close(box.x + box.width / 2, content.x + content.width / 2, 'centered back element');
+            assert.ok(box.width <= content.width + 1, 'content fits horizontally');
+          }
+          close(
+            (title.y + capacityBox.y + capacityBox.height) / 2,
+            content.y + content.height / 2,
+            'vertically centered content',
+          );
+          close(summary.y - title.y - title.height, 12, 'description spacing');
+          close(capacityBox.y - summary.y - summary.height, 16, 'capacity spacing');
+          assert.ok(action.y - capacityBox.y - capacityBox.height >= 12, 'bottom action clearance');
+          await expect(link).toHaveAttribute('href', `/inflables/${slug}`);
+          const flippedSize = await card.boundingBox();
+          close(flippedSize.height, size.height, 'flip height');
+          close(flippedSize.width, size.width, 'flip width');
+          const frontSize = await front.boundingBox();
+          const backSize = await back.boundingBox();
+          close(backSize.height, frontSize.height, 'face heights');
+          close(backSize.width, frontSize.width, 'face widths');
+          assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
+          await button.tap();
+          await expect(card).toHaveAttribute('data-flipped', 'false');
+        }
+      }
+      const babyGym = flipCard(page, 'Baby Gym');
+      await babyGym.getByRole('button').tap();
+      await babyGym.getByRole('link').tap();
+      await expect(page).toHaveURL(/\/inflables\/baby-gym$/);
+      await expect(page.locator('main')).toContainText(flipProducts[0][2]);
+      await page.goto(`${baseURL}inflables`);
+      await babyGym.getByRole('link').tap();
+      await expect(page).toHaveURL(/\/inflables\/baby-gym$/);
+    } finally {
+      await page.close();
+    }
+  });
+}
+
+test('mouse hover flips and resets, keyboard can flip and reach the active details link', async () => {
+  const page = await regressionPage({ viewport: { width: 1440, height: 900 } });
+  try {
+    await page.goto(`${baseURL}inflables`);
+    const card = flipCard(page, 'Baby Gym');
+    const button = card.getByRole('button');
+    const frontLink = card.locator('.product-card__face').first().getByRole('link');
+    const backLink = card.locator('.product-card__face--back').getByRole('link');
+    await expect(card.locator('.product-card__rotor')).toHaveCSS('transition-duration', '0.5s');
+    await expect(button).toHaveCSS('clip-path', 'inset(50%)');
+    await expect(button).toHaveCSS('pointer-events', 'none');
+    await card.locator('img').hover();
+    await expect(card).toHaveAttribute('data-flipped', 'true');
+    await expect(frontLink).toHaveCount(0);
+    await page.mouse.move(0, 0);
+    await expect(card).toHaveAttribute('data-flipped', 'false');
+    await button.focus();
+    await expect(button).toHaveCSS('clip-path', 'none');
+    await expect(button).toHaveCSS('outline-style', 'solid');
+    await button.press('Enter');
+    await expect(card).toHaveAttribute('data-flipped', 'true');
+    await expect(button).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(backLink).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(button).toBeFocused();
+    await button.press('Space');
+    await expect(card).toHaveAttribute('data-flipped', 'false');
+    await expect(backLink).toHaveCount(0);
+    await page.keyboard.press('Tab');
+    await expect(frontLink).toBeFocused();
+    await frontLink.press('Enter');
+    await expect(page).toHaveURL(/\/inflables\/baby-gym$/);
+    await page.goto(`${baseURL}inflables`);
+    await frontLink.click();
+    await expect(page).toHaveURL(/\/inflables\/baby-gym$/);
+  } finally {
+    await page.close();
+  }
+});

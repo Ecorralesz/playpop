@@ -21,6 +21,10 @@ const inflatable = (data) => ({
   featured: true,
   available: null,
   ...data,
+  rules: [
+    ...data.rules,
+    'La capacidad está sujeta a las especificaciones del fabricante, las restricciones de edad y peso, y la supervisión adulta.',
+  ],
   durationPrices: pricing.inflatables[data.id],
   price: pricing.inflatables[data.id][pricing.standardRentalHours],
 });
@@ -51,6 +55,9 @@ export const products = [
     id: 'baby-gym',
     slug: 'baby-gym',
     name: 'Baby Gym',
+    shortDescription:
+      'Un espacio lleno de colores, pelotas y diversión para que los más pequeños exploren y jueguen.',
+    capacity: 'Hasta 8 niños simultáneamente',
     imageFit: 'contain',
     ageRestriction: '0 a 4 años',
     description:
@@ -151,6 +158,10 @@ export const products = [
     id: 'inflable-tobogan',
     slug: 'inflable-con-tobogan',
     name: 'Inflable con Tobogán',
+    catalogName: 'Inflable con Tobogán 5×4',
+    shortDescription:
+      'Saltos, risas y emocionantes deslizamientos para disfrutar una fiesta inolvidable.',
+    capacity: 'Hasta 12 niños simultáneamente',
     dimensions: '5 × 4 m',
     ageRestriction: '3+',
     rules: [
@@ -164,6 +175,9 @@ export const products = [
     id: 'inflable-deportivo-3-en-1',
     slug: 'inflable-deportivo-3-en-1',
     name: 'Inflable Deportivo 3 en 1',
+    shortDescription:
+      'Tres desafíos deportivos para competir, jugar en equipo o demostrar tus habilidades.',
+    capacity: 'Multiples jugadores.',
     dimensions: null,
     ageRestriction: '5+',
     rules: [
@@ -202,6 +216,10 @@ export const products = [
     id: 'castillo-inflable',
     slug: 'castillo-inflable',
     name: 'Castillo Inflable',
+    catalogName: 'Castillo Inflable 3×3',
+    shortDescription:
+      'Un castillo lleno de alegría donde cada salto se convierte en una nueva aventura.',
+    capacity: 'Hasta 10 niños simultáneamente',
     dimensions: '3 × 3 m',
     ageRestriction: '3+',
     rules: [...generalInflatableRules, 'No se debe escalar sobre paredes o mallas de seguridad.'],

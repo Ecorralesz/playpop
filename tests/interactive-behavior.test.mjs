@@ -370,7 +370,10 @@ test('shared product cards contain promotional artwork while photo covers and ve
         getComputedStyle(card.querySelector('.product-card__media')).aspectRatio,
         '4 / 3',
       );
-      assert.equal(getComputedStyle(card.querySelector('.product-card__link')).marginTop, 'auto');
+      assert.equal(
+        getComputedStyle(card.querySelector('.product-card__description')).marginTop,
+        'auto',
+      );
     }
     await act(async () => navigateTo('/juegos'));
     assert.equal(document.querySelectorAll('.product-card__image').length, 7);
